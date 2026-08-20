@@ -63,4 +63,53 @@ Then created two OneLake Shortcuts (ADLS Gen2, SAS token auth) from the Lakehous
 
 Spent a good chunk of time on a completely unrelated problem first — an old Databricks project (a different repo) had left a NAT Gateway and VNet running in the background for months, billing hourly regardless of whether it was actually being used. Cost had nothing to do with how often a pipeline was run — it was just sitting there. Deleted that resource group, upgraded the subscription, set a $5 budget alert so this doesn't happen silently again.
 
-Then, once I got to actually uploading: `az storage blob upload --auth-mode login` just hung with no error. Turns out being subscription Owner isn't the same
+Then, once I got to actually uploading: `az storage blob upload --auth-mode login` just hung with no error. Turns out being subscription Owner isn't the same as having the `Storage Blob Data Contributor` role — that's a separate, data-plane-level permission the CLI needs and doesn't tell you about clearly. Worked around it with an account-key-based SAS token from the portal instead.
+
+And then a dumb one that cost me twenty minutes: pasted a SAS token into a bash variable without quotes. SAS tokens are full of `&` characters, and bash reads unquoted `&` as "run this in the background" — so it silently split my token into like seven separate background jobs and only kept the first fragment. Got `403 AuthorizationPermissionMismatch` and assumed it was a permissions problem again, when it was actually just a quoting bug. Lesson: always wrap tokens in single quotes.
+
+**Verifying the shortcuts actually work, not just exist:**
+
+​```python
+# Open Food Facts shortcut
+df_food = spark.read.parquet("Files/food-nutrition-health-data/food.parquet")
+df_food.printSchema()
+print(df_food.count())
+
+# OWID shortcut
+df_env = spark.read.csv("Files/food-environmental-impact/ghg-per-kg-poore.csv", header=True)
+df_env.show(5)
+​```
+
+![Notebook Shortcut Verification](screenshots/Notebook_Shortcut_Verification.png)
+
+---
+
+## Phase 3: Silver Transformation
+Not started.
+
+This is where the real cleaning happens — deduping Open Food Facts, handling nulls, standardizing units, and building the category-mapping table that links thousands of branded products to ~40 commodity categories from the Poore & Nemecek side. That mapping isn't a clean join and I expect it to take a while.
+
+## Phase 4: Gold Aggregation
+Not started. Fact/dimension tables combining health and environmental metrics by food category.
+
+## Phase 5: Power BI Reporting
+Not started. Direct Lake report comparing plant-based vs. conventional, maybe a basic substitution-scenario view if there's time.
+
+---
+
+## Stack
+Microsoft Fabric (Lakehouse, OneLake, Data Pipelines), PySpark, Delta Lake, Power BI (Direct Lake), Azure Data Lake Storage Gen2, Azure Cloud Shell / AzCopy.
+
+## Status
+- [x] Phase 1: Fabric Environment Setup
+- [x] Phase 2: Raw Data Staging & Bronze Ingestion via OneLake Shortcuts
+- [ ] Phase 3: Silver Transformation
+- [ ] Phase 4: Gold Aggregation
+- [ ] Phase 5: Power BI Reporting
+
+## Data credit
+- Open Food Facts data © Open Food Facts contributors, ODbL license.
+- Environmental data: Poore, J., & Nemecek, T. (2018). *Reducing food's environmental impacts through producers and consumers.* Science, 360(6392), 987–992. Via Our World in Data, CC BY.
+
+## Author
+Mahesh Boyapati
