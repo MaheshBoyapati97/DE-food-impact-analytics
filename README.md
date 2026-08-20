@@ -49,6 +49,10 @@ Grabbed the three Poore & Nemecek CSVs straight from Our World in Data's grapher
 
 ![Food Parquet Blob Details](screenshots/Food_Parquet_Blob_Details.png)
 
+Along the way I hit a subscription issue unrelated to this project's actual data work — an old resource group from a different project had left networking infrastructure running in the background for months, billing hourly regardless of use. Tracked it down through Cost Analysis, deleted it, and set a $5 budget alert so it can't happen silently again. Also hit an RBAC gap where `az storage blob upload --auth-mode login` just hung — being subscription Owner isn't the same as having the `Storage Blob Data Contributor` data-plane role. Worked around it with an account-key-based SAS token instead, generated from the portal.
+
+One more that cost some time: pasted a SAS token into a bash variable without quotes. SAS tokens are full of `&` characters, and bash reads unquoted `&` as "run this in the background" — so it silently split the token into several background jobs and only kept the first fragment. Got a `403 AuthorizationPermissionMismatch` and assumed it was a permissions problem again, when it was actually just a quoting bug. Lesson: always wrap tokens in single quotes.
+
 Then created two OneLake Shortcuts (ADLS Gen2, SAS token auth) from the Lakehouse into those two containers. Skipped the "Transform to Delta" option Fabric offers during shortcut setup — didn't want any transformation logic sneaking into Bronze before I've even written the Silver notebook.
 
 ![Fabric Lakehouse Shortcuts](screenshots/Fabric_Lakehouse_Shortcuts.png)
@@ -59,28 +63,23 @@ Then created two OneLake Shortcuts (ADLS Gen2, SAS token auth) from the Lakehous
 - Shortcuts: same names, under Lakehouse `Files/`
 - Files: `food.parquet` (~7.2GB), `ghg-per-kg-poore.csv`, `land-use-per-kg-poore.csv`, `water-withdrawals-per-kg-poore.csv`
 
-**What actually went wrong:**
-
-Spent a good chunk of time on a completely unrelated problem first — an old Databricks project (a different repo) had left a NAT Gateway and VNet running in the background for months, billing hourly regardless of whether it was actually being used. Cost had nothing to do with how often a pipeline was run — it was just sitting there. Deleted that resource group, upgraded the subscription, set a $5 budget alert so this doesn't happen silently again.
-
-Then, once I got to actually uploading: `az storage blob upload --auth-mode login` just hung with no error. Turns out being subscription Owner isn't the same as having the `Storage Blob Data Contributor` role — that's a separate, data-plane-level permission the CLI needs and doesn't tell you about clearly. Worked around it with an account-key-based SAS token from the portal instead.
-
-And then a dumb one that cost me twenty minutes: pasted a SAS token into a bash variable without quotes. SAS tokens are full of `&` characters, and bash reads unquoted `&` as "run this in the background" — so it silently split my token into like seven separate background jobs and only kept the first fragment. Got `403 AuthorizationPermissionMismatch` and assumed it was a permissions problem again, when it was actually just a quoting bug. Lesson: always wrap tokens in single quotes.
-
 **Verifying the shortcuts actually work, not just exist:**
 
-​```python
-# Open Food Facts shortcut
-df_food = spark.read.parquet("Files/food-nutrition-health-data/food.parquet")
-df_food.printSchema()
-print(df_food.count())
+```python
+df = spark.read.parquet("Files/food-nutrition-health-data/food.parquet")
+df.printSchema()
+```
 
-# OWID shortcut
-df_env = spark.read.csv("Files/food-environmental-impact/ghg-per-kg-poore.csv", header=True)
-df_env.show(5)
-​```
+![Open Food Facts Shortcut Verification](screenshots/Notebook_Shortcut_Verification.png)
 
-![Notebook Shortcut Verification](screenshots/Notebook_Shortcut_Verification.png)
+```python
+df = spark.read.csv("Files/food-environmental-impact/ghg-per-kg-poore.csv", header=True)
+df.show(5)
+```
+
+![OWID Shortcut Verification](screenshots/OWID_Shortcut_Verification.png)
+
+The second check also caught a real issue: the first SAS token I used was only valid for a few hours, so by the time I got around to verifying the OWID shortcut it had already expired, throwing a `403 AccessDenied`. Fixed by generating a new SAS token with a much longer expiry (months instead of hours) and updating the shortcut's connection under Fabric's Manage Connections and Gateways. Worth just setting a long expiry from the start next time instead of the short default.
 
 ---
 
