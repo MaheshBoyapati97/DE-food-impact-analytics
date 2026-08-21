@@ -65,12 +65,18 @@ Then created two OneLake Shortcuts (ADLS Gen2, SAS token auth) from the Lakehous
 
 **Verifying the shortcuts actually work, not just exist:**
 
+Configuring a shortcut in the Fabric UI doesn't guarantee it's actually readable — so I ran a quick read against each one from a notebook to confirm.
+
+First, the Open Food Facts shortcut — read the Parquet file and print its schema:
+
 ```python
 df = spark.read.parquet("Files/food-nutrition-health-data/food.parquet")
 df.printSchema()
 ```
 
 ![Open Food Facts Shortcut Verification](screenshots/Notebook_Shortcut_Verification.png)
+
+Then the OWID shortcut — read one of the CSVs and show a few rows:
 
 ```python
 df = spark.read.csv("Files/food-environmental-impact/ghg-per-kg-poore.csv", header=True)
