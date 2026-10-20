@@ -11,15 +11,15 @@ The goal is a working pipeline end to end — raw ingestion, cleaning, transform
 
 Standard medallion setup on one Fabric Lakehouse:
 - **Bronze** — raw data landed via OneLake Shortcuts, untouched
-- **Silver** — cleaned Open Food Facts data, plus a mapping table linking it to the Poore & Nemecek commodity categories
+- **Silver** — cleaned Open Food Facts data, plus a mapping table linking it to the Poore & Nemecek food categories
 - **Gold** — the actual comparison tables, feeding a Power BI report over Direct Lake
 
 ## Data
 
 | Source | What it gives me |
 |---|---|
-| Open Food Facts | Nutri-Score, NOVA group, nutrients, category tags — messy, raw, needs real cleaning |
-| Poore & Nemecek (2018), via Our World in Data | GHG emissions, land use, freshwater withdrawal per kg, across ~40 food categories — curated research data, treated as reference data rather than something to "clean" |
+| Open Food Facts | Nutri-Score (an A to E nutrition grade), NOVA group (a 1 to 4 score for how processed a food is), nutrients, category tags — messy, raw, needs real cleaning |
+| Poore & Nemecek (2018), via Our World in Data (OWID) | Greenhouse gas (GHG) emissions, land use, freshwater withdrawal per kg, across 38 food categories — curated research data, treated as reference data rather than something to "clean" |
 
 ---
 
@@ -35,9 +35,9 @@ Nothing to report on the challenges front for this one — it was just clicking 
 
 ## Phase 2: Raw Data Staging & Bronze Ingestion via OneLake Shortcuts
 
-This phase ended up being most of the actual work so far, and most of the real problems.
+This phase ended up being most of the actual work early on, and most of the real problems.
 
-Set up an ADLS Gen2 storage account (`stfoodimpactdev`, Central US, Standard/LRS, hierarchical namespace on) to stage both datasets before bringing them into Fabric.
+Set up an Azure Data Lake Storage Gen2 (ADLS Gen2) storage account (`stfoodimpactdev`, Central US, Standard, locally redundant storage, hierarchical namespace on) to stage both datasets before bringing them into Fabric.
 
 ![Storage Account Overview](screenshots/Storage_Account_Overview.png)
 
@@ -49,7 +49,7 @@ Grabbed the three Poore & Nemecek CSVs straight from Our World in Data's grapher
 
 ![Food Parquet Blob Details](screenshots/Food_Parquet_Blob_Details.png)
 
-Along the way I hit a subscription issue unrelated to this project's actual data work — an old resource group from a different project had left networking infrastructure running in the background for months, billing hourly regardless of use. Tracked it down through Cost Analysis, deleted it, and set a $5 budget alert so it can't happen silently again. Also hit an RBAC gap where `az storage blob upload --auth-mode login` just hung — being subscription Owner isn't the same as having the `Storage Blob Data Contributor` data-plane role. Worked around it with an account-key-based SAS token instead, generated from the portal.
+Along the way I hit a subscription issue unrelated to this project's actual data work — an old resource group from a different project had left networking infrastructure running in the background for months, billing hourly regardless of use. Tracked it down through Cost Analysis, deleted it, and set a $5 budget alert so it can't happen silently again. Also hit a role-based access control (RBAC) gap where `az storage blob upload --auth-mode login` just hung — being subscription Owner isn't the same as having the `Storage Blob Data Contributor` data-plane role. Worked around it with an account-key-based shared access signature (SAS) token instead, generated from the portal.
 
 One more that cost some time: pasted a SAS token into a bash variable without quotes. SAS tokens are full of `&` characters, and bash reads unquoted `&` as "run this in the background" — so it silently split the token into several background jobs and only kept the first fragment. Got a `403 AuthorizationPermissionMismatch` and assumed it was a permissions problem again, when it was actually just a quoting bug. Lesson: always wrap tokens in single quotes.
 
@@ -61,7 +61,7 @@ Then created two OneLake Shortcuts (ADLS Gen2, SAS token auth) from the Lakehous
 - Storage account: `stfoodimpactdev`
 - Containers: `food-nutrition-health-data`, `food-environmental-impact`
 - Shortcuts: same names, under Lakehouse `Files/`
-- Files: `food.parquet` (~7.2GB), `ghg-per-kg-poore.csv`, `land-use-per-kg-poore.csv`, `water-withdrawals-per-kg-poore.csv`
+- Files: `food.parquet` (~7.2GB), plus six small CSVs from Our World in Data: GHG emissions, land use and freshwater withdrawals, each per kg and per 100g of protein
 
 **Verifying the shortcuts actually work, not just exist:**
 
@@ -76,7 +76,7 @@ df.printSchema()
 
 ![Open Food Facts Shortcut Verification](screenshots/Notebook_Shortcut_Verification.png)
 
-Then the OWID shortcut — read one of the CSVs and show a few rows:
+Then the Our World in Data (OWID) shortcut — read one of the CSVs and show a few rows:
 
 ```python
 df = spark.read.csv("Files/food-environmental-impact/ghg-per-kg-poore.csv", header=True)
@@ -85,20 +85,93 @@ df.show(5)
 
 ![OWID Shortcut Verification](screenshots/OWID_Shortcut_Verification.png)
 
-The second check also caught a real issue: the first SAS token I used was only valid for a few hours, so by the time I got around to verifying the OWID shortcut it had already expired, throwing a `403 AccessDenied`. Fixed by generating a new SAS token with a much longer expiry (months instead of hours) and updating the shortcut's connection under Fabric's Manage Connections and Gateways. Worth just setting a long expiry from the start next time instead of the short default.
+The SAS token ended up expiring twice. The first one was only valid for a few hours, so the OWID shortcut threw a `403 AccessDenied` when I got around to checking it. The replacement lasted a few weeks and then lapsed too, which broke both shortcuts the next time I opened a notebook. Both times the fix was the same: generate a new token and paste it into each shortcut's connection under Manage connections and gateways. This time I set the expiry much further out.
 
 ---
 
 ## Phase 3: Silver Transformation
-Not started.
 
-This is where the real cleaning happens — deduping Open Food Facts, handling nulls, standardizing units, and building the category-mapping table that links thousands of branded products to ~40 commodity categories from the Poore & Nemecek side. That mapping isn't a clean join and I expect it to take a while.
+This phase turned out to be less about cleaning code and more about finding out how little of Open Food Facts lines up with the environmental data, and deciding what to do about it.
+
+### What the raw data looked like
+
+A few things I didn't expect once I looked at the schema:
+
+- Product names aren't a text column. Each one is an array of language/text pairs, so I have to pick one.
+- The nutrients (fat, fiber, sugar and so on) aren't columns either. They sit in one array of name/value records per product.
+- The category tags, which I planned to link on, are blank or a placeholder like `en:undefined` for 2,818,542 of the 4,655,195 products (60.5%). That leaves 1,836,653 products with a usable category.
+
+Before dropping that 60.5% I wanted to know whether I'd be skewing the data, so I compared the countries of the tagged and untagged groups. France and the US lead both: about 28% and 20% of the tagged group, and 22% and 19% of the untagged one. Spain is a bit more common among the untagged (8% vs. 6%). Nothing alarming, so I went ahead with the tagged subset. Country is a weak check though, so I'm treating this as a limitation of the project, not something I've ruled out.
+
+### Linking products to food categories
+
+The environmental dataset has 38 entries like Beef, Cheese, Peas and Tofu, which are raw commodities. Open Food Facts is mostly snacks, ready meals and sodas, and those don't map to any of them. So the linking step, not the cleaning, is what limits how much data I can use.
+
+I built three small reference tables by hand, working from the most common category tags in the data:
+
+- `silver_food_category` has 37 food categories, each with a food group, an animal-or-plant flag, and a flag for whether it can be compared between plant and animal foods. The two beef entries in the environmental data (beef herd and dairy herd) are combined into one `Beef` category, because a product tag can't say which herd the meat came from. Gold will keep both figures and show beef as a range.
+- `silver_category_mapping` has 40 Open Food Facts tags mapped to those categories. Each row has a specificity (1 means the tag names the food itself, 2 a broader group tag, 3 a catch-all like "Other Fruit") and a match quality (direct or approximate).
+- `silver_plant_alternatives` has 20 hand-picked animal-to-plant pairs (beef to tofu, peas or other pulses; milk to soy milk) for the "what could I swap this for" part of the report.
+
+A few judgment calls worth writing down:
+- Coffee, wine, dark chocolate and the two sugars are mapped but marked not comparable, since there's no animal-based version to compare them with.
+- The environmental data only covers farmed fish and prawns, and the tags don't say farmed or wild, so fish and prawns are labelled approximate.
+- Only soy drinks map to Soy milk. Oat, almond and rice drinks stay unmapped instead of borrowing soy's footprint.
+- Six categories (Root Vegetables, Barley, Maize, Cassava, Cane Sugar and Beet Sugar) ended up with no products, because I found no usable tags for them.
+
+After building the tables I ran a few checks: every category name in the environmental file exists in my category table, every mapping row points to a real category, and every alternative pair uses real categories on both sides. All came back 0.
+
+![Silver Reference Tables](screenshots/Silver_Reference_Tables.png)
+
+Then I assigned products. Each barcode keeps its newest non-obsolete row, language prefixes get fixed (some tags show up as `xx:tofu` instead of `en:tofu`), and when a product matches several tags the most specific one wins. That gave 376,581 products (about 8% of the whole dataset) exactly one category. Another 2,876 matched two categories equally well, so they went to `quarantine_ambiguous_category` instead of getting a guess. Most of those (2,225) were legume-versus-vegetable ties, like green beans, and 165 were fruit-versus-vegetable ties.
+
+### The product table
+
+`silver_food_products` has one row per assigned product: a clean name, Nutri-Score and NOVA (placeholder values turned into nulls), a vegan status from Open Food Facts' ingredient analysis, and eight nutrients per 100g. There were only 60 duplicate barcodes in 4.66 million rows, and the newest-row rule handles them.
+
+How much of each field is actually filled in:
+
+| Field | Products | Share |
+|---|---|---|
+| Product name | 366,722 | 97.4% |
+| Nutri-Score | 276,238 | 73.4% |
+| NOVA group | 161,254 | 42.8% |
+| Energy | 304,677 | 80.9% |
+| Protein | 304,718 | 80.9% |
+| Fat | 304,495 | 80.9% |
+| Saturated fat | 296,997 | 78.9% |
+| Carbohydrates | 303,180 | 80.5% |
+| Sugars | 295,641 | 78.5% |
+| Fiber | 171,267 | 45.5% |
+| Salt | 290,033 | 77.0% |
+
+NOVA and fiber are the thin ones, so the report will need to show how many products each average is based on.
+
+A few hundred values were impossible (negative, or more than 100g of something per 100g of food) and were set to null instead of dropped: 317 for energy, 201 for salt, and under 65 each for the rest. Another 583 products have numbers that contradict each other (saturated fat higher than total fat, or sugars higher than carbohydrates). Those are kept but flagged, and I'll leave them out of the averages.
+
+### Cross-checking with the vegan analysis
+
+I'd hoped the vegan status would be my plant-based flag, but 62% of the products have it as unknown, and only 36% have a firm vegan or non-vegan answer. So the plant/animal split comes from the food category, which is always filled in, and the vegan status became a cross-check instead.
+
+The cross-check found 8,341 conflicts (about 2.2%). Some were vegan products filed under animal categories, like plant-based cheeses and meat substitutes that still carry a "cheeses" or "meats" tag. Most were non-vegan products filed under plant categories: cheesy potato bakes, chips with cheddar and sour cream, honey-roasted peanuts, caramel cappuccino mix. The biggest single group came through the broad `en:potatoes-and-their-products` tag, which lets processed foods in. I moved all of them into `quarantine_vegan_conflict` and removed them from the Silver table, which leaves 368,240 products.
+
+```sql
+-- products per food category in the Silver table
+SELECT food_category, COUNT(*) AS products
+FROM silver_food_products
+GROUP BY food_category
+ORDER BY products DESC;
+```
+
+**Tables from this phase:** `silver_food_category`, `silver_category_mapping`, `silver_plant_alternatives`, `silver_product_category`, `silver_food_products`, `quarantine_ambiguous_category`, `quarantine_vegan_conflict`.
+
+---
 
 ## Phase 4: Gold Aggregation
-Not started. Fact/dimension tables combining health and environmental metrics by food category.
+Not started. One table per food category combining nutrition, health scores and environmental footprint, plus a table of plant-based swaps with the emissions and nutrition differences.
 
 ## Phase 5: Power BI Reporting
-Not started. Direct Lake report comparing plant-based vs. conventional, maybe a basic substitution-scenario view if there's time.
+Not started. Direct Lake report where you pick a food and see what it is, its nutrition, its environmental impact, how healthy it is, and plant-based alternatives for animal-based foods.
 
 ---
 
@@ -108,7 +181,7 @@ Microsoft Fabric (Lakehouse, OneLake, Data Pipelines), PySpark, Delta Lake, Powe
 ## Status
 - [x] Phase 1: Fabric Environment Setup
 - [x] Phase 2: Raw Data Staging & Bronze Ingestion via OneLake Shortcuts
-- [ ] Phase 3: Silver Transformation
+- [x] Phase 3: Silver Transformation
 - [ ] Phase 4: Gold Aggregation
 - [ ] Phase 5: Power BI Reporting
 
