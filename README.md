@@ -109,7 +109,7 @@ The environmental dataset has 38 entries like Beef, Cheese, Peas and Tofu, which
 
 I built three small reference tables by hand, working from the most common category tags in the data:
 
-- `silver_food_category` has 37 food categories, each with a food group, an animal-or-plant flag, and a flag for whether it can be compared between plant and animal foods. The two beef entries in the environmental data (beef herd and dairy herd) are combined into one `Beef` category, because a product tag can't say which herd the meat came from. Gold will keep both figures and show beef as a range.
+- `silver_food_category` has 37 food categories, each with a food group, an animal-or-plant flag, and a flag for whether it can be compared between plant and animal foods. The two beef entries in the environmental data (beef herd and dairy herd) are combined into one `Beef` category, because a product tag can't say which herd the meat came from. Gold keeps both figures and shows beef as a range.
 - `silver_category_mapping` has 40 Open Food Facts tags mapped to those categories. Each row has a specificity (1 means the tag names the food itself, 2 a broader group tag, 3 a catch-all like "Other Fruit") and a match quality (direct or approximate).
 - `silver_plant_alternatives` has 20 hand-picked animal-to-plant pairs (beef to tofu, peas or other pulses; milk to soy milk) for the "what could I swap this for" part of the report.
 
@@ -124,6 +124,8 @@ After building the tables I ran a few checks: every category name in the environ
 ![Silver Reference Tables](screenshots/Silver_Reference_Tables.png)
 
 Then I assigned products. Each barcode keeps its newest non-obsolete row, language prefixes get fixed (some tags show up as `xx:tofu` instead of `en:tofu`), and when a product matches several tags the most specific one wins. That gave 376,581 products (about 8% of the whole dataset) exactly one category. Another 2,876 matched two categories equally well, so they went to `quarantine_ambiguous_category` instead of getting a guess. Most of those (2,225) were legume-versus-vegetable ties, like green beans, and 165 were fruit-versus-vegetable ties.
+
+![Silver Product Assignment](screenshots/Silver_Product_Assignment.png)
 
 ### The product table
 
@@ -145,15 +147,23 @@ How much of each field is actually filled in:
 | Fiber | 171,267 | 45.5% |
 | Salt | 290,033 | 77.0% |
 
+These numbers are from before the vegan cross-check below removed 8,341 products, so the table has 376,581 rows here and 368,240 at the end.
+
 NOVA and fiber are the thin ones, so the report will need to show how many products each average is based on.
 
-A few hundred values were impossible (negative, or more than 100g of something per 100g of food) and were set to null instead of dropped: 317 for energy, 201 for salt, and under 65 each for the rest. Another 583 products have numbers that contradict each other (saturated fat higher than total fat, or sugars higher than carbohydrates). Those are kept but flagged, and I'll leave them out of the averages.
+![Silver Field Coverage](screenshots/Silver_Field_Coverage.png)
+
+A few hundred values were impossible (negative, or more than 100g of something per 100g of food) and were set to null instead of dropped: 317 for energy, 201 for salt, and under 65 each for the rest. Another 583 products have numbers that contradict each other (saturated fat higher than total fat, or sugars higher than carbohydrates). Those are kept but flagged, and I leave them out of the averages.
 
 ### Cross-checking with the vegan analysis
 
 I'd hoped the vegan status would be my plant-based flag, but 62% of the products have it as unknown, and only 36% have a firm vegan or non-vegan answer. So the plant/animal split comes from the food category, which is always filled in, and the vegan status became a cross-check instead.
 
 The cross-check found 8,341 conflicts (about 2.2%). Some were vegan products filed under animal categories, like plant-based cheeses and meat substitutes that still carry a "cheeses" or "meats" tag. Most were non-vegan products filed under plant categories: cheesy potato bakes, chips with cheddar and sour cream, honey-roasted peanuts, caramel cappuccino mix. The biggest single group came through the broad `en:potatoes-and-their-products` tag, which lets processed foods in. I moved all of them into `quarantine_vegan_conflict` and removed them from the Silver table, which leaves 368,240 products.
+
+Where the ingredient analysis gave a firm answer, it agreed with my category label for 99% of products in animal categories (82,589 of 83,229) and for 85% of products in plant categories (45,235 of 52,936).
+
+![Silver Vegan Conflicts](screenshots/Silver_Vegan_Conflicts.png)
 
 ```sql
 -- products per food category in the Silver table
@@ -168,10 +178,62 @@ ORDER BY products DESC;
 ---
 
 ## Phase 4: Gold Aggregation
-Not started. One table per food category combining nutrition, health scores and environmental footprint, plus a table of plant-based swaps with the emissions and nutrition differences.
+
+I built Gold around the report I want at the end: someone picks a food and sees what it is, what's in it, what it costs the environment, how healthy it is, and what plant-based food could replace it. That gave me three Gold tables, plus one reference table that feeds them.
+
+### What I built
+
+- `silver_env_impact` has the environmental data from all six CSV files (greenhouse gases, land use and water, each per kg and per 100g of protein), joined into one row per food.
+- `gold_category_profile` has one row per food category (37). Each row has the average of eight nutrients per 100g, and how many products each average is based on. It also has Nutri-Score as an average score (A is 1, E is 5) plus the share rated A or B, and NOVA as an average plus the share that are ultra-processed (group 4). The environmental numbers sit next to them, each with a low, mid and high value. Only beef has a real range: 33.3 to 99.5 kg of CO2-equivalent (CO2e) per kg, from the dairy herd and beef herd figures. The products I flagged as having contradictory nutrient numbers are left out of the averages.
+- `gold_plant_swaps` has the 20 animal-to-plant pairs from Silver, with the change in emissions, land and water, and the difference in each nutrient.
+- `gold_product_examples` has up to 10 real products per category (310 in total), so the report can show what a category actually contains.
+
+### Approximate matches were skewing the averages
+
+Some of my tag mappings are approximate: a broad tag like `en:potatoes-and-their-products` lets in processed food. I compared each category's averages with and without them. Potatoes changed the most: saturated fat dropped from 2.6g to 0.5g per 100g, and the Nutri-Score average went from 3.17 to 1.97, because chips and cheesy potato dishes were dragging the numbers. Wheat & Rye moved too (saturated fat from 0.4g to 0.7g). Beef, Pig Meat and Oatmeal barely moved.
+
+![Gold Approximate vs Direct Matches](screenshots/Gold_Approximate_vs_Direct.png)
+
+So the rule is: if a category has at least 500 direct matches, its averages use only those. That applies to 28 of the 37 categories. Fish, prawns and tomatoes have no direct matches at all, so they use everything and carry a flag saying so. The six empty categories are marked `none`. Each row records which basis it used (`basis_used`) and what share of its products were direct matches.
+
+### Swaps
+
+I compare each pair per 100g of protein, since comparing beef and tofu per kg isn't fair. Milk to soy milk is the exception, because soy milk has no per-protein figure, so it's compared per kg. Every row says which basis it used.
+
+Some results:
+- Beef to tofu cuts emissions by 94%, land by 98% and water by 91%. Peas and other pulses are similar.
+- Cheese to nuts cuts emissions by 98% but water use not at all, since nuts need a lot of water. Cheese to tofu cuts water by 96%.
+- Some swaps are worse on land: eggs to other pulses by 29%, prawns to tofu by 9% and prawns to peas by 67%. Farmed prawns use very little land per gram of protein.
+- Eggs to tofu is slightly worse on Nutri-Score (+0.32 points).
+
+![Gold Plant Swaps](screenshots/Gold_Plant_Swaps.png)
+
+The nutrition differences are per 100g of food as sold, not per equal protein, and that matters. The meat and fish swaps leave you with 3 to 15g less protein per 100g (beef to peas is the biggest gap). Milk to soy milk loses under 1g, cheese to nuts about 2g and cheese to tofu about 6.5g. Eggs are the closest: tofu has 1.2g more per 100g, other pulses 1.1g less. That mix is an approximation, so the report needs to show the protein difference next to the savings.
+
+```sql
+-- biggest emissions savings for the top-ranked swap of each animal food
+SELECT animal_category, plant_category, ghg_reduction_pct, land_reduction_pct, water_reduction_pct
+FROM gold_plant_swaps
+WHERE rank = 1
+ORDER BY ghg_reduction_pct DESC;
+```
+
+### Things that went wrong or need saying
+
+- While reviewing the notebook I found the swaps cell sat above the profile rebuild it depends on. A clean run would have built the swaps from the old numbers. I reordered the cells and ran the whole notebook top to bottom once, and the numbers matched.
+- My first version of the examples sorted names alphabetically as the last tie-break, so the beef list was full of duplicates like "1 Entrecôte" and "1 / 3 Boeuf Gelee". I switched to one row per name, skipped names starting with a digit, and picked among equally complete products in a fixed pseudo-random order. A few names are still in French or Polish, because the name falls back to the product's main language when there's no English one.
+- Every product in a category gets the same environmental number, since the study only has category-level data. And Open Food Facts is crowdsourced, so the products reflect what people chose to add, not what people eat.
+
+**Tables from this phase:** `silver_env_impact`, `gold_category_profile`, `gold_plant_swaps`, `gold_product_examples`.
+
+All eleven tables in the Lakehouse after this phase:
+
+![Gold Tables List](screenshots/Gold_Tables_List.png)
+
+---
 
 ## Phase 5: Power BI Reporting
-Not started. Direct Lake report where you pick a food and see what it is, its nutrition, its environmental impact, how healthy it is, and plant-based alternatives for animal-based foods.
+Not started. Report where you pick a food and see what it is, its nutrition, its environmental impact, how healthy it is, and plant-based alternatives for animal-based foods.
 
 ---
 
@@ -182,7 +244,7 @@ Microsoft Fabric (Lakehouse, OneLake, Data Pipelines), PySpark, Delta Lake, Powe
 - [x] Phase 1: Fabric Environment Setup
 - [x] Phase 2: Raw Data Staging & Bronze Ingestion via OneLake Shortcuts
 - [x] Phase 3: Silver Transformation
-- [ ] Phase 4: Gold Aggregation
+- [x] Phase 4: Gold Aggregation
 - [ ] Phase 5: Power BI Reporting
 
 ## Data credit
