@@ -233,19 +233,82 @@ All eleven tables in the Lakehouse after this phase:
 ---
 
 ## Phase 5: Power BI Reporting
-Not started. Report where you pick a food and see what it is, its nutrition, its environmental impact, how healthy it is, and plant-based alternatives for animal-based foods.
+
+I built the report on a Direct Lake semantic model, so it reads the Gold tables straight from the Lakehouse, with no import and no refresh schedule. A PDF of the finished report is in [report/rpt_food_impact.pdf](report/rpt_food_impact.pdf).
+
+### The semantic model
+
+`sm_food_impact` has three tables (`gold_category_profile`, `gold_plant_swaps` and `gold_product_examples`) and two relationships. The profile table connects to the swaps table (`food_category` to `animal_category`) and to the examples table (`food_category`), both one-to-many with a single filter direction. Direct Lake doesn't validate relationships, so I set the cardinality by hand.
+
+![Semantic Model Relationships](screenshots/Semantic_Model_Relationships.png)
+
+I also wrote a few measures in DAX, Power BI's formula language. Three of them show the environmental numbers as a range, which is how beef shows 33.3 to 99.5 instead of a misleading midpoint:
+
+```
+GHG per kg range = 
+VAR lo = MIN(gold_category_profile[ghg_per_kg_low])
+VAR hi = MAX(gold_category_profile[ghg_per_kg_high])
+RETURN IF(ISBLANK(lo), BLANK(), IF(lo = hi, FORMAT(lo, "0.0"), FORMAT(lo, "0.0") & " to " & FORMAT(hi, "0.0")))
+```
+
+The land use and water measures follow the same pattern. The others return "Animal-based" or "Plant-based", the food group, and the product count as formatted text. The text ones exist because the web editor showed text columns sideways in cards and turned 6,961 into "7K".
+
+### The report
+
+It has three pages, built in the Fabric web editor.
+
+**Food explorer.** Pick a food and see what it is (animal or plant, and its food group), its environmental footprint per kg, its average nutrition per 100g, its Nutri-Score and NOVA scores with the number of products behind them, and up to 10 example products.
+
+![Report Page 1: Food Explorer](screenshots/Report_Page1_Food_Explorer.png)
+
+**Plant-based swaps.** Pick one of the nine animal foods and see each plant alternative: how much lower the emissions, land use and water are (negative means worse), and a table of what you gain or lose in protein, fiber, saturated fat and Nutri-Score.
+
+![Report Page 2: Plant-based Swaps](screenshots/Report_Page2_Plant_Swaps.png)
+
+**Compare everything.** Greenhouse gas emissions on a log scale against Nutri-Score points for 28 foods, with bubble size showing how many products sit behind each average. Orange is animal-based and green is plant-based. Coffee, wine, dark chocolate, the sugars and the empty categories are left out.
+
+![Report Page 3: Compare Everything](screenshots/Report_Page3_Compare.png)
+
+### What it shows
+
+- Beef runs from 33.3 to 99.5 kg CO2e per kg, against 3.2 for tofu.
+- Cheese and pig meat are the worst on both counts. Cheese has about 16g of saturated fat per 100g and a Nutri-Score average of 3.84, and pig meat is at 4.08.
+- Eggs are the exception among animal foods, with a Nutri-Score average of 1.29.
+- Replacing beef with tofu, peas or other pulses cuts emissions by 94 to 99% per 100g of protein. Not every swap wins, though: cheese to nuts saves no water, and eggs to other pulses uses 29% more land.
+
+### Things that didn't go smoothly
+
+- The web editor has fewer settings than Power BI Desktop. There's no Column tools tab, so I set percentage formats on the model, and the display units setting wasn't where the docs said, so I used text measures instead.
+- Direct Lake models don't support calculated columns, and I didn't want to rebuild the Gold table at the end. So the legend on the comparison chart reads True and False for "animal-based food?", and the title and subtitle explain what that means.
+- The environmental figure is per category, so every product in a category shows the same footprint.
+- The live report runs on a Fabric trial capacity that ends at the start of November 2026, and the report goes with it. That's why this repo has the PDF, screenshots and CSV exports.
+
+### Rebuilding it
+
+The notebooks in `notebooks/` rebuild every table from the raw Open Food Facts file (about 7GB, [downloaded from Hugging Face](https://huggingface.co/datasets/openfoodfacts/product-database)) and the six Our World in Data CSVs. The product-level Silver tables are too big to commit. To rebuild just the report, load the three Gold CSVs from `data/` into Power BI Desktop (free), recreate the two relationships and add the measures above.
+
+### What's in the repo
+
+```
+notebooks/     the exploration, Silver and Gold notebooks
+data/          CSV exports of the reference tables and the Gold tables
+report/        the report as a PDF
+screenshots/   the images used in this README
+```
+
+**Items from this phase:** `sm_food_impact`, `rpt_food_impact`.
 
 ---
 
 ## Stack
-Microsoft Fabric (Lakehouse, OneLake, Data Pipelines), PySpark, Delta Lake, Power BI (Direct Lake), Azure Data Lake Storage Gen2, Azure Cloud Shell / AzCopy.
+Microsoft Fabric (Lakehouse, OneLake, Data Pipelines), PySpark, Delta Lake, Power BI (Direct Lake semantic model and report), Azure Data Lake Storage Gen2, Azure Cloud Shell / AzCopy.
 
 ## Status
 - [x] Phase 1: Fabric Environment Setup
 - [x] Phase 2: Raw Data Staging & Bronze Ingestion via OneLake Shortcuts
 - [x] Phase 3: Silver Transformation
 - [x] Phase 4: Gold Aggregation
-- [ ] Phase 5: Power BI Reporting
+- [x] Phase 5: Power BI Reporting
 
 ## Data credit
 - Open Food Facts data © Open Food Facts contributors, ODbL license.
