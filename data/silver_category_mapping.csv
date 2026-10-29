@@ -1,0 +1,41 @@
+off_tag,food_category,specificity,match_quality
+en:onions,Onions & Leeks,1,direct
+en:tomatoes-and-their-products,Tomatoes,2,approximate
+en:vegetables,Other Vegetables,3,direct
+en:potatoes,Potatoes,1,direct
+en:potatoes-and-their-products,Potatoes,2,approximate
+en:grapes,Berries & Grapes,1,direct
+en:citrus,Citrus Fruit,1,direct
+en:fruits,Other Fruit,3,direct
+en:broccoli,Brassicas,1,direct
+en:cabbages,Brassicas,1,direct
+en:poultries,Poultry Meat,1,direct
+en:cheeses,Cheese,1,direct
+en:milks,Milk,1,direct
+en:eggs,Eggs,1,direct
+en:fishes,Fish (farmed),1,approximate
+en:beef,Beef,1,direct
+en:beef-and-its-products,Beef,2,approximate
+en:lamb-meat,Lamb & Mutton,1,direct
+en:pork,Pig Meat,1,direct
+en:pork-and-its-products,Pig Meat,2,approximate
+en:shrimps,Prawns (farmed),1,approximate
+en:prawns,Prawns (farmed),1,approximate
+en:apples,Apples,1,direct
+en:bananas,Bananas,1,direct
+en:berries,Berries & Grapes,1,direct
+en:rices,Rice,1,direct
+en:rolled-oats,Oatmeal,1,direct
+en:oat,Oatmeal,2,approximate
+en:wheats,Wheat & Rye,1,direct
+en:wheat-flours,Wheat & Rye,2,approximate
+en:peas,Peas,1,direct
+en:green-peas,Peas,1,direct
+en:legumes,Other Pulses,3,direct
+en:tofu,Tofu,1,direct
+en:soy-based-drinks,Soy milk,1,direct
+en:peanuts,Groundnuts,1,direct
+en:nuts,Nuts,2,direct
+en:coffees,Coffee,1,direct
+en:wines,Wine,1,direct
+en:dark-chocolates,Dark Chocolate,1,direct

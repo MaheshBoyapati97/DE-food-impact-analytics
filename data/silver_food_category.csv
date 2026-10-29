@@ -1,0 +1,38 @@
+food_category,owid_entities,food_group,is_animal,comparable
+Citrus Fruit,Citrus Fruit,Fruit,False,True
+Other Fruit,Other Fruit,Fruit,False,True
+Brassicas,Brassicas,Vegetables,False,True
+Onions & Leeks,Onions & Leeks,Vegetables,False,True
+Other Vegetables,Other Vegetables,Vegetables,False,True
+Tomatoes,Tomatoes,Vegetables,False,True
+Root Vegetables,Root Vegetables,Vegetables,False,True
+Barley,Barley,Grains & Starches,False,True
+Beef,Beef (beef herd);Beef (dairy herd),Meat,True,True
+Lamb & Mutton,Lamb & Mutton,Meat,True,True
+Pig Meat,Pig Meat,Meat,True,True
+Poultry Meat,Poultry Meat,Meat,True,True
+Potatoes,Potatoes,Grains & Starches,False,True
+Cassava,Cassava,Grains & Starches,False,True
+Peas,Peas,Legumes & Soy,False,True
+Other Pulses,Other Pulses,Legumes & Soy,False,True
+Maize,Maize,Grains & Starches,False,True
+Oatmeal,Oatmeal,Grains & Starches,False,True
+Rice,Rice,Grains & Starches,False,True
+Wheat & Rye,Wheat & Rye,Grains & Starches,False,True
+Coffee,Coffee,Drinks & Treats,False,False
+Wine,Wine,Drinks & Treats,False,False
+Dark Chocolate,Dark Chocolate,Drinks & Treats,False,False
+Cane Sugar,Cane Sugar,Sugar,False,False
+Beet Sugar,Beet Sugar,Sugar,False,False
+Prawns (farmed),Prawns (farmed),Seafood,True,True
+Apples,Apples,Fruit,False,True
+Bananas,Bananas,Fruit,False,True
+Berries & Grapes,Berries & Grapes,Fruit,False,True
+Tofu,Tofu,Legumes & Soy,False,True
+Soy milk,Soy milk,Legumes & Soy,False,True
+Groundnuts,Groundnuts,Nuts,False,True
+Nuts,Nuts,Nuts,False,True
+Cheese,Cheese,Dairy,True,True
+Milk,Milk,Dairy,True,True
+Eggs,Eggs,Eggs,True,True
+Fish (farmed),Fish (farmed),Seafood,True,True

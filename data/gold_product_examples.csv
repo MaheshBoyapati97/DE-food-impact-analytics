@@ -1,0 +1,311 @@
+food_category,code,product_name,match_quality,nutriscore_grade,nova_group,vegan_status,energy_kcal,proteins,fat,saturated_fat,carbohydrates,sugars,fiber,salt
+Apples,8718906686687,Groene appel,direct,b,1,unknown,59.0,0.2,0.2,0.0,13.0,10.0,2.0,0.0
+Apples,2070900001788,mele granny smith,direct,a,1,vegan,38.0,0.44,0.1,0.0,9.4,9.4,2.8,0.0
+Apples,0059749933155,Cortland apples,direct,a,1,vegan,50.724636,2.8985507,0.0,0.0,13.768116,10.144928,3.0,0.0
+Apples,00801348,Granny smith apples,direct,a,1,vegan,51.0,0.6,0.5,0.1,11.6,11.6,1.2,0.1
+Apples,26063256,Pains au lait,direct,b,1,vegan,342.5,0.34,0.58,0.0,11.4,10.31,2.02,0.03048
+Apples,5057753494506,Pink Lady Apple Snack Pack,direct,b,1,vegan,67.5,0.4,0.1,0.1,11.6,11.6,2.7,0.01
+Apples,4316268694483,Bio-Äpfel,direct,a,1,vegan,48.9,0.27,0.13,0.021,10.7,10.1,1.3,0.0
+Apples,8006032869082,Pink lady,direct,a,1,vegan,48.9,0.27,0.13,0.021,10.7,10.1,1.3,0.0
+Apples,0185889000669,"Apple gently dried fruit, apple",direct,c,1,vegan,350.0,0.0,0.0,0.0,85.0,47.5,5.0,0.0
+Apples,8966971453691,purée de pommes sans sucres ajoutés,direct,a,1,maybe-vegan,53.0,0.5,0.0,0.0,12.0,12.0,1.7,0.0
+Bananas,5400141222975,Bananes Fairtrade,direct,a,1,vegan,72.0,0.98,0.25,0.0,15.2,14.8,2.7,0.0
+Bananas,2864921013765,Bananen / Bananes,direct,a,1,vegan,90.5,1.06,0.25,0.005,19.7,15.6,2.7,0.0063
+Bananas,00115728,Banane,direct,a,1,vegan,161.0,21.0,8.2,0.1,0.8,0.1,2.7,0.1
+Bananas,2264100001352,Bio Bananen,direct,a,1,vegan,90.5,1.06,0.25,0.005,19.7,15.6,2.7,0.0063
+Bananas,4251291113221,Bananen süß & samtig,direct,b,1,vegan,96.0,1.1,0.2,0.1,22.0,17.2,2.0,0.0
+Bananas,0868718000305,"Bananas Organic Fairtrade, 94011",direct,a,1,vegan,90.5,1.06,0.25,0.005,19.7,15.6,2.7,0.0063
+Bananas,0219616008274,Bananes,direct,a,1,vegan,90.5,1.06,0.25,0.005,19.7,15.6,2.7,0.0063
+Bananas,3760203040193,Frecinette Baby Banana,direct,a,1,vegan,90.5,1.06,0.25,0.005,19.7,15.6,2.7,0.0063
+Bananas,2250140001629,Bananes Bio,direct,a,1,vegan,90.5,1.06,0.25,0.005,19.7,15.6,2.7,0.0063
+Bananas,8847105270301,Chocolate Coated Banana,direct,d,1,maybe-vegan,280.0,2.4,3.2,3.2,61.6,48.0,6.4,0.0
+Beef,3256228413017,Haché pur boeuf surgelé 400g,direct,c,1,non-vegan,207.0,18.0,15.0,6.2,0.5,0.5,0.5,0.22
+Beef,0096619064069,Steak Strips,direct,e,3,unknown,214.28572,32.142857,1.7857143,0.0,17.857143,14.285714,0.0,2.9464285
+Beef,00495271,British beef kebabs with sweet chilli seasoning,direct,d,4,non-vegan,272.0,18.8,17.9,7.4,8.4,4.9,1.2,0.74
+Beef,0275411202002,Plat-de-côtes avec os sous vide Halal,direct,c,1,non-vegan,240.0,32.1,12.4,5.72,0.0,0.0,0.0,0.15
+Beef,3021210060100,Langue de boeuf - Sauce madère au sel de Guérande,direct,d,4,non-vegan,236.0,10.0,20.0,5.5,4.0,2.0,0.0,1.0
+Beef,3250391908738,Tendre & Moelleux 15% M.G.,direct,d,4,non-vegan,201.4,15.0,15.0,8.0,1.6,0.5,0.0192025,0.91
+Beef,2630959000004,"Viande bovine - Cuisson sur pierre/plancha, Nouvelle agriculture",direct,a,1,non-vegan,125.0,22.0,4.1,1.5,0.0,0.0,0.0,0.09
+Beef,3596710424368,Viande de boeuf séchée des Alpes,direct,e,4,non-vegan,151.0,31.0,2.7,1.1,0.6,0.5,0.5,4.2
+Beef,3250390016533,Steaks hachés 15% - 6 x 100g,direct,c,1,non-vegan,194.0,19.0,15.0,6.2,0.5,0.5,0.5,0.19
+Beef,5906190375674,Gulasz Wołowy,direct,c,4,non-vegan,122.0,16.0,6.0,2.5,1.1,0.9,0.0,0.67
+Berries & Grapes,4068706493409,"Cranberries, dried & sweetened",direct,d,3,unknown,335.0,0.3,0.9,0.5,78.0,72.0,6.8,0.02
+Berries & Grapes,20000684,Frutos silvestres,direct,d,4,unknown,236.0,0.7,0.2,0.1,55.5,55.4,2.5,0.02
+Berries & Grapes,0810511010135,Dried Strawberries Fraises,direct,d,3,maybe-vegan,325.0,1.25,0.0,0.0,82.5,70.0,2.5,0.0
+Berries & Grapes,3700530900449,Rainsin blanc bio,direct,a,1,vegan,61.0,0.5,0.1,0.1,15.5,5.0,1.0,0.0
+Berries & Grapes,6414894500401,tumma siemennetön viinirypäle,direct,a,1,vegan,73.0,0.6,0.4,0.0,15.0,15.0,1.1,0.0
+Berries & Grapes,5063089708934,Refreshing & Sweet Seedless Red Grapes,direct,a,1,vegan,73.2,0.72,0.16,0.054,15.7,15.5,0.9,0.005
+Berries & Grapes,00132862,Framboises,direct,a,1,unknown,32.0,1.4,0.3,0.1,4.6,4.6,2.5,0.1
+Berries & Grapes,8712439064004,Canneberges,direct,d,1,vegan,339.0,1.0,0.5,0.0,78.0,69.0,5.13,0.08
+Berries & Grapes,3263853575218,Airelles au naturel,direct,a,1,vegan,38.0,0.5,0.0,0.0,7.5,5.0,0.6,0.0
+Berries & Grapes,2868711027482,Mélange de fruits rouges,direct,a,1,vegan,41.0,0.9,0.5,0.1,6.0,5.1,3.65,0.0
+Brassicas,4002268636003,Chou à la chinoise,direct,d,3,vegan,144.0,1.0,8.6,7.0,14.4,12.1,2.607889,1.53
+Brassicas,7610029191806,Broccolis,direct,a,1,vegan,28.0,3.0,0.0,0.0,2.4,2.3,3.0,0.0
+Brassicas,4012200462706,Bowl Rotkraut,direct,c,3,vegan,44.0,1.5,0.1,0.1,7.5,7.0,2.5,1.1
+Brassicas,0015869007206,Broccoli- Röschen,direct,a,1,vegan,33.0,3.6,0.2,0.1,2.6,1.5,2.9,0.05
+Brassicas,4337256948272,Broccoli Röschen,direct,a,1,vegan,40.0,4.3,0.6,0.1,3.1,1.9,2.5,0.05
+Brassicas,8421691843417,Brócoli Alipende,direct,a,1,vegan,34.0,2.4,0.5,0.02,3.5,1.5,3.0,0.03
+Brassicas,3250392007287,BROCOLIS PRECUITS VAPEUR 750G (675g),direct,a,1,vegan,23.7,2.1,0.1,0.0,2.3,1.4,2.6,0.03
+Brassicas,39812193,purple headed broccoli,direct,a,1,vegan,36.0,3.95,0.48,0.061,1.7,1.7,2.9,0.048
+Brassicas,20337339,Freshona Broccolibuketter,direct,d,1,vegan,395.0,4.0,0.5,0.1,94.0,94.0,0.5,0.1975
+Brassicas,7045610050406,Surkål finsnittet,direct,c,4,unknown,42.0,0.6,0.3,0.0,9.4,9.4,2.0,0.9
+Cheese,0021333830133,Colby Jack shredded Colby and monetary jack cheese,direct,d,3,non-vegan,392.85715,21.428572,32.142857,17.857143,3.5714285,0.0,0.0,1.5178572
+Cheese,0021130048977,Reduced fat white american slices,direct,e,4,non-vegan,237.0,15.79,13.16,7.89,10.53,10.53,0.0,3.815
+Cheese,0070876000107,"Nordica, Cottage Cheese",direct,c,4,non-vegan,106.0,11.5,4.42,3.1,3.54,3.54,0.0,1.085
+Cheese,0060466984979,Fromage bleu danois,direct,e,4,non-vegan,333.3333,20.0,30.0,16.6667,0.0,0.0,0.0,3.3333333
+Cheese,4006402033130,Almkäse Chili,direct,d,3,non-vegan,311.7,18.0,26.5,18.3,0.3,0.1,0.0075,2.1
+Cheese,0028835204004,Grated Parmesan Cheese Alternative,direct,e,4,unknown,400.0,0.0,10.0,0.0,60.0,0.0,0.0,4.75
+Cheese,3307901030080,Pavé d'Affinois,direct,d,3,non-vegan,257.0,16.0,21.0,15.0,1.0,1.0,0.0,1.5
+Cheese,0061104135548,Triple Cream Soft Ripened Cheese With Mushrooms,direct,d,4,non-vegan,429.0,14.29,42.86,28.57,0.0,0.0,0.0,1.6975
+Cheese,0893913001345,"Leaf Cuisine, Dairy Alternative Spread, Jalapeno Lime",direct,c,4,maybe-vegan,214.0,7.14,16.07,3.57,14.29,3.57,3.6,1.25
+Cheese,2111861006907,Le Gruyère switzerland AOP,direct,e,3,non-vegan,26.1,2.46,0.1425,0.0825,3.7425,3.6975,0.0,24.5325
+Citrus Fruit,3270190010272,Citrons,direct,a,1,vegan,0.0,0.0,0.0,0.0,0.0,0.0,0.25,0.0
+Citrus Fruit,3560071405403,Zumo de naranja,direct,a,4,vegan,21.0,0.0,0.0,0.0,5.0,4.5,0.5,0.0
+Citrus Fruit,3350030218713,Oranges dégustation,direct,a,1,vegan,46.0,1.0,0.2,0.0,8.3,8.3,1.8,0.0
+Citrus Fruit,4013044100144,Orangenschale gerieben,direct,d,1,unknown,312.0,4.4,1.0,0.28,56.7,47.2,2.565,0.01
+Citrus Fruit,8431876059656,Orange avec Pulpe,direct,c,1,vegan,42.0,0.6,0.0,0.0,10.0,10.0,0.352652,0.0
+Citrus Fruit,7613312366424,Mandarinenschnitze in Sirup,direct,c,3,unknown,62.0,0.4,0.5,0.1,14.8,14.2,0.4,0.03
+Citrus Fruit,0076963548972,"Green acres, mandarin oranges",direct,c,3,unknown,62.0,0.0,0.0,0.0,15.93,15.04,0.9,0.0225
+Citrus Fruit,4005394119167,Sinaasappelschil,direct,b,1,vegan,323.0,4.6,5.5,1.6,57.0,24.2,13.4,0.1
+Citrus Fruit,3250392215590,NETTO Soda Orange pulpé 2L,direct,c,4,maybe-vegan,20.8,0.0,0.0,0.0,5.2,5.2,0.0,0.01
+Citrus Fruit,9100000860022,Natur pur Bio-Produkte(Zitronen),direct,a,1,vegan,27.6,0.25,0.25,0.005,1.56,0.8,0.25,0.0063
+Coffee,8000070000216,Dosettes de café moulu Espresso n°8,direct,b,1,vegan,0.0,0.0,0.0,0.0,0.0,0.0,19.8,0.0
+Coffee,8000070200883,Café capsules Kenya n°8 - Espresso,direct,b,1,vegan,0.0,0.0,0.0,0.0,0.0,0.0,19.8,0.0
+Coffee,9120079621546,BIO OAT CAFFÈ LATTE,direct,c,3,vegan,37.0,0.7,0.9,0.1,6.2,3.6,0.8,0.12
+Coffee,8431876262575,Café colombia molido descafeinado natural,direct,b,1,vegan,7.5,0.76,0.4,0.0,0.5,0.1,0.5,0.002
+Coffee,5011546498423,Capsules Dolce Gusto lungo 16 Capsules,direct,b,1,vegan,0.0,0.0,0.0,0.0,0.0,0.0,19.8,0.0
+Coffee,8000070015104,Boîte de café moulu 100% arabica.,direct,b,1,vegan,1.0,0.2,0.0,0.0,0.3,0.0,0.0,0.0
+Coffee,8437009342053,Bebida de Acena con Café,direct,c,4,maybe-vegan,51.0,1.1,2.2,0.4,6.4,4.9,1.2806,0.15
+Coffee,8431876027884,Café grano mezcla,direct,b,3,maybe-vegan,25.6,1.4,1.0,0.4,0.3,0.0,4.8,0.0
+Coffee,3222477069145,Pur arabica Bouquet d'arômes,direct,b,1,vegan,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Coffee,3222472110965,Pur Brésil 100% arabica Equilibré et doux,direct,b,1,vegan,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Dark Chocolate,3443271018102,Les gourmands,direct,e,4,maybe-vegan,609.0,8.6,45.0,32.0,41.0,30.0,8.425,0.0
+Dark Chocolate,3250392426699,Tablette dessert chocolat noir corsé 64%,direct,e,4,maybe-vegan,536.2,9.7,34.0,22.0,43.0,35.0,9.7,0.02
+Dark Chocolate,20022464,Extra Dark 74% Cocoa,direct,e,4,vegan,571.0,9.9,42.0,26.0,32.0,26.0,12.6,0.02
+Dark Chocolate,3483981002466,Chocolat noir Super fruit d'Amazonie,direct,e,3,unknown,565.0,8.1,38.9,23.3,41.5,33.9,8.4,0.0
+Dark Chocolate,7622201441005,Bio noir fèves rares trinitario éclats d'amandes,direct,e,4,unknown,562.0,8.8,39.0,20.0,40.0,35.0,8.6,0.01
+Dark Chocolate,8412170024298,Chocolate tipo Fondant 53% Cacao,direct,d,4,unknown,448.0,5.0,33.0,20.0,50.0,0.4,3.0,0.0
+Dark Chocolate,8436006832291,Organic dark chocolate 82% Congo,direct,d,3,maybe-vegan,599.0,9.0,51.88,32.32,22.7,18.1,11.1,0.0
+Dark Chocolate,3564706607798,Chocolat noir République Dominicaine 70% cacao,direct,e,4,maybe-vegan,597.0,7.6,45.0,27.0,35.0,29.0,11.0,0.0
+Dark Chocolate,5420051400461,Ethiquable 72% Haïti,direct,e,3,maybe-vegan,579.0,9.5,42.1,25.2,35.4,27.4,2.5075,0.0
+Dark Chocolate,4063367194320,Hořká čokoláda,direct,e,3,vegan,583.0,7.7,45.0,29.0,31.0,27.0,11.0,0.03
+Eggs,3700864005124,Oeufs plein air Sélectionnés par la famille,direct,a,1,non-vegan,140.0,13.0,9.8,2.6,0.3,0.3,0.0,0.31
+Eggs,3439496001845,Blancs d'Oeufs,direct,a,1,non-vegan,48.1,10.0,0.5,0.1,0.9,0.9,0.0,0.4
+Eggs,5413828001329,Oeufs durs,direct,a,3,non-vegan,132.0,14.0,8.5,2.7,1.0,0.0,0.0,0.34
+Eggs,0043695461763,"Ham, egg & cheese",direct,d,4,non-vegan,233.0,7.78,8.89,4.44,30.0,2.22,1.1,1.0275
+Eggs,3700864019060,L'Oeuf de nos villages,direct,a,1,non-vegan,140.0,12.7,9.83,2.64,0.27,0.27,0.0,0.31
+Eggs,7898967617002,Ovos tipo grande vermelho,direct,a,1,non-vegan,147.0,12.0,9.0,3.0,1.0,0.2,0.0,0.32
+Eggs,0030034962852,Cage Free Hard Cooked Eggs,direct,a,1,non-vegan,136.0,13.6,9.09,3.41,2.27,0.0,0.0,0.341
+Eggs,5400101023406,Carrefour 30 Oeufs de Poulet Élevée au Sol Medium A,direct,a,1,non-vegan,151.0,13.0,11.0,3.7,0.5,0.5,0.5,0.29
+Eggs,24010702,Huevos gallina criadas en suelo,direct,a,1,non-vegan,150.0,12.5,11.1,3.1,0.0,0.0,0.0,0.1
+Eggs,00019064,Scottish Large Eggs,direct,a,1,non-vegan,131.0,12.6,9.0,2.5,0.1,0.1,0.0,0.38
+Fish (farmed),7027110222460,Sardiner i saus laget av solmodne tomater,approximate,c,4,unknown,198.0,14.0,14.0,3.1,3.4,2.5,1.8,0.9825
+Fish (farmed),0238595907002,"Trapper's creek, smoked salmon",approximate,d,4,unknown,158.0,24.56,6.14,1.75,1.75,0.0,0.0,2.5
+Fish (farmed),3551610008162,Pane de cabillaud,approximate,a,3,non-vegan,193.0,13.0,7.9,0.9,17.0,1.3,1.7,0.42
+Fish (farmed),4056489671602,Filets de hareng à la sauce tomate,approximate,c,4,non-vegan,188.0,11.5,13.3,3.9,4.6,4.6,0.54775,0.85
+Fish (farmed),3560071245160,Thon Albacore Allégé,approximate,b,3,non-vegan,154.0,24.0,6.3,1.0,0.0,0.0,0.0,1.5
+Fish (farmed),3256224560128,"Filet de merlu blanc meunière, transformé en France, barquette de220g",approximate,a,4,non-vegan,159.0,15.0,5.8,0.7,12.0,0.5,0.5,0.74
+Fish (farmed),3439496610016,Saumon Atlantique Fumé 200gr,approximate,d,3,non-vegan,167.0,19.0,9.8,2.0,0.6,0.5,0.1261,3.0
+Fish (farmed),3019898379669,Saumon fumé sauvage de la mer baltique,approximate,d,3,non-vegan,160.0,23.0,7.6,1.9,0.5,0.1,0.0,2.8
+Fish (farmed),4056489255246,Tuna chunks in sunflower oil,approximate,d,3,non-vegan,362.09,16.8725,32.766,4.052,0.0,0.0,0.0,0.82475
+Fish (farmed),4065002003578,Saumon fumé / Gerookte zalm / Räucherlachs,approximate,d,4,non-vegan,162.0,20.0,9.0,1.4,0.0,0.0,0.0,2.6
+Groundnuts,3560071493745,Crusti' Nuts Salé,direct,c,4,maybe-vegan,524.0,15.0,32.0,3.9,42.0,8.6,5.6,1.6
+Groundnuts,4056489676607,mélange tropical,direct,d,4,unknown,379.0,3.2,8.1,3.7,71.3,59.7,3.8,0.22
+Groundnuts,0036800014671,Dry roasted peanuts unsalted,direct,a,1,vegan,571.4286,25.0,50.0,7.142857,21.428572,3.5714285,7.142857,0.0
+Groundnuts,3700195650017,Arachides crues blanches,direct,b,1,vegan,614.0,27.0,50.0,11.0,9.6,4.6,8.6,0.01
+Groundnuts,3760090191213,Cacahuètes Pralinées,direct,c,3,maybe-vegan,557.25,17.1,36.825,6.3,36.05,29.375,6.45,0.01785
+Groundnuts,0856905003109,Japanese Style Peanuts,direct,c,4,unknown,500.0,16.666666,20.0,3.3333333,60.0,26.666666,6.6666665,0.9166667
+Groundnuts,3168930007371,Bénénuts Cacahuètes grillées à sec lot de 2 x 163 g,direct,c,4,maybe-vegan,615.0,27.0,51.0,8.7,7.2,4.9,8.0,1.4
+Groundnuts,5026489479675,Gujarati mix,direct,d,3,maybe-vegan,530.0,16.0,34.0,5.0,40.0,6.0,7.0,2.7
+Groundnuts,10052914,Roasted monkey nuts,direct,a,1,vegan,604.0,28.8,48.1,8.6,10.4,5.7,8.6,0.01
+Groundnuts,20996673,Cacahuètes enrobées saveur barbecue,direct,c,4,maybe-vegan,509.0,13.0,28.8,4.1,47.1,11.3,4.611666,1.58
+Lamb & Mutton,0206076075045,Souris d'agneau cuite sans son jus,direct,c,4,unknown,150.0,21.0,7.1,3.1,1.1,0.6,0.0,0.85
+Lamb & Mutton,0024241701540,Lamb’s Liver,direct,e,1,unknown,137.0,20.3,6.2,6.2,0.1,0.1,0.5,19.965
+Lamb & Mutton,2000000139591,ASDA Tender Lamb Leg Steaks,direct,c,1,unknown,223.0,29.0,12.0,5.1,0.5,0.5,0.5,0.16
+Lamb & Mutton,5057545777435,Slow Cooked Lamb shank In Mint Gravy,direct,c,4,non-vegan,218.0,26.4,11.5,4.8,1.8,1.8,0.6,0.58
+Lamb & Mutton,2726962000000,Cote flt agneau assiet +,direct,a,1,unknown,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Lamb & Mutton,5057545777459,Slow Cooked Lamb Shank in Red Wine Gravy,direct,c,4,unknown,181.0,23.8,8.2,3.4,2.9,1.9,0.1,0.67
+Lamb & Mutton,4088600048536,Lamb Hot Pot,direct,b,4,unknown,90.0,4.9,2.9,1.0,10.2,1.9,1.8,0.6875
+Lamb & Mutton,4860110820020,Khinkali Beef And Lamb,direct,c,3,non-vegan,245.0,14.0,16.0,3.9,23.0,1.4,1.59,0.18
+Lamb & Mutton,5054070205532,Minted lamb and mutton quarter pounders,direct,d,4,non-vegan,244.05286,16.740088,17.621145,8.722467,5.2863436,3.6123347,0.44052863,0.52863437
+Lamb & Mutton,2106544012504,Filet d'agneau,direct,a,1,non-vegan,117.0,22.0,3.3,1.9,0.0,0.0,0.0,0.0
+Milk,5055534340035,"Impact Whey Isolate, Salted Caramel, 5KG",direct,e,4,non-vegan,371.0,86.0,3.0,2.0,6.0,6.0,0.3,0.75
+Milk,7613287405326,La lechera espuma de leche,direct,b,4,non-vegan,53.0,4.3,1.8,1.4,4.8,4.8,0.0,0.33
+Milk,7506443108523,Oikos Pro,direct,d,4,non-vegan,68.18519,8.3,1.3,0.7,9.6,8.4,0.0,0.167
+Milk,0085239029411,"Vitamins a& d ultra-pasteurized, 38% less fat than regular milk",direct,b,1,unknown,54.0,3.33,2.08,1.25,5.0,5.0,0.0,0.14
+Milk,7708854058361,Leche Semidescremada LÄKTOLAND,direct,b,4,non-vegan,50.0,2.92,2.08,1.25,4.58,4.58,0.0,0.191
+Milk,8002580007532,Latte Berna,direct,b,1,non-vegan,46.0,3.3,1.6,1.0,4.8,4.8,0.0,0.13
+Milk,6033000089571,Ideal Original Evaporated Milk,direct,e,4,non-vegan,154.0,8.2,7.7,3.8,12.5,12.5,0.0,0.35
+Milk,4088600248707,Lactose Free semi skimmed milk,direct,b,1,non-vegan,50.0,3.6,1.8,1.12,4.8,4.8,0.0,0.11
+Milk,0026400410195,"Darigold, 1% low fat milk, strawberry",direct,e,4,non-vegan,88.0,3.75,1.04,0.62,15.42,15.0,0.0,0.145
+Milk,00357937,SEMI SKIMMED 1.8% FAT MILK,direct,b,1,non-vegan,50.0,3.6,1.8,1.1,4.8,4.8,0.5,0.1075
+Nuts,3660992022953,Pistaches en coque grillées,direct,a,1,vegan,622.0,25.0,50.0,6.2,13.0,6.7,9.8,0.02
+Nuts,2007030034157,XXL PISTACHES,direct,c,3,vegan,605.0,27.0,49.0,6.3,10.0,5.6,7.6,1.8
+Nuts,8421691851313,Almendra granillo,direct,a,1,vegan,610.0,24.9,52.0,4.0,5.8,5.8,9.9,0.01
+Nuts,5905784327921,Orzechy laskowe łuskane,direct,a,1,vegan,686.0,14.0,66.0,6.2,3.6,3.6,11.0,0.02
+Nuts,7318690510253,Sötmandel,direct,a,1,vegan,614.0,20.0,52.0,4.9,13.0,6.6,7.2,0.03
+Nuts,8423371004279,Anacardos salados,direct,b,3,vegan,583.0,19.0,45.0,6.0,23.0,7.0,5.12487,0.6
+Nuts,3162050018279,Amandes effilées grillées,direct,a,1,vegan,623.0,24.1,54.1,4.22,10.0,6.9,9.9,0.1
+Nuts,3700066103017,Noix De Cajou Crue 500 GR X 24,direct,b,1,vegan,574.0,15.3,46.4,9.7,32.7,5.1,5.7,0.03
+Nuts,3263853599313,Marrons entiers cuits à la vapeur,direct,a,1,vegan,187.0,2.9,1.8,0.4,35.5,7.5,8.4,0.0
+Nuts,5902115193187,Orzechy nerkowca połówki,direct,b,1,vegan,582.0,18.22,43.85,7.78,26.89,5.91,3.3,0.01
+Oatmeal,4056489964599,Haferflocken - Copos de avena gruesos,direct,a,1,vegan,370.0,12.0,6.9,1.3,59.6,1.1,10.4,0.025
+Oatmeal,8017130002011,Hafterflocken Zart,direct,a,1,vegan,366.1,13.0,5.5,1.1,62.0,1.0,8.3,0.01
+Oatmeal,7891095100682,YOKI Aveia em Flocos Finos,direct,a,4,unknown,347.0,14.3,7.0,1.33,56.7,0.0,10.0,0.0
+Oatmeal,7500478033324,Chocoavena,direct,b,4,unknown,74.0,2.2,1.8,0.5,12.3,3.7,1.6,0.14
+Oatmeal,4056489944089,Pikakaurahiutale,direct,a,1,vegan,369.0,14.0,6.5,1.3,58.0,1.0,11.0,0.01
+Oatmeal,7702193101320,Avena Hojuelas Sin Gluten,direct,a,1,vegan,377.0,13.0,7.3,1.3,68.0,0.0,6.6,0.0
+Oatmeal,9010437015882,clever HAFER FLOCKEN zart,direct,a,1,vegan,371.0,13.3,6.51,1.13,57.9,0.97,10.2,0.014
+Oatmeal,9300633226275,Organic Australian Rolled Oats,direct,a,1,vegan,376.66666,3.8,2.7,0.4,16.7,0.3,3.3,0.0125
+Oatmeal,0675625371073,Sprouted Rolled Oats,direct,a,1,vegan,384.6154,13.461538,6.730769,0.96153843,65.38461,0.0,11.538462,0.0
+Oatmeal,7702439606992,Bary Avena en Hojuelas,direct,a,1,vegan,392.0,12.1,9.17,2.08,70.8,0.0,9.58,0.00646
+Onions & Leeks,20546007,British extra large brown onions,direct,a,1,vegan,38.6,1.1,0.62,0.2,6.25,4.8,1.7,0.098
+Onions & Leeks,03242599,Spring onions,direct,a,1,vegan,28.0,2.0,0.5,0.1,3.0,2.8,1.5,0.02
+Onions & Leeks,4260561220019,Bayerische Gemüsezwiebeln,direct,a,1,vegan,38.6,1.1,0.62,0.2,6.25,4.8,1.7,0.098
+Onions & Leeks,7350090451637,Picklad Rödlök!,direct,c,3,unknown,84.0,0.6,0.1,0.0,19.6,16.4,0.0,0.4925
+Onions & Leeks,8414382410944,Süße Zwiebel,direct,a,1,vegan,38.6,1.1,0.62,0.2,6.25,4.8,1.7,0.098
+Onions & Leeks,0625195604019,Pearl Onions,direct,a,1,vegan,35.294117,0.0,0.0,0.0,8.235294,5.882353,2.3529413,0.0
+Onions & Leeks,3017809616018,Oignons émincés A cuire d'aucy 1kg,direct,a,1,vegan,32.0,1.0,0.1,0.0,5.4,4.6,2.7,0.02
+Onions & Leeks,3276554780409,Oignon 1Kg Cat. 1 Cal. 60-80 Ferme des Arches,direct,a,1,vegan,38.6,1.1,0.62,0.2,6.25,4.8,1.7,0.098
+Onions & Leeks,3270160503070,Oignons rouges émincés surgelés,direct,a,1,vegan,41.0,1.2,0.2,0.1,7.9,5.6,1.4,0.01
+Onions & Leeks,9004624000942,Weiße Zwiebel,direct,a,1,vegan,38.6,1.1,0.62,0.2,6.25,4.8,1.7,0.098
+Other Fruit,3596710530366,Sans Sucres Ajoutés Panaché x16,direct,a,4,unknown,54.0,0.5,0.5,0.1,12.0,12.0,1.7,0.01
+Other Fruit,6194012401048,Dátiles en rama,direct,c,1,vegan,290.0,2.7,0.4,0.0,65.0,60.0,8.0,0.005
+Other Fruit,20197261,Gourmet Feigen,direct,c,1,vegan,290.0,3.8,3.2,0.5,54.0,31.0,4.1,0.43
+Other Fruit,8436555876012,Framboises AB,direct,a,1,vegan,49.2,1.19,0.8,0.13,5.83,5.4,4.3,0.0063
+Other Fruit,8424269010051,Albaricoques,direct,a,1,vegan,45.9,0.81,0.25,0.005,9.01,6.7,1.7,0.0063
+Other Fruit,3560070800674,Mermelada melocotón,direct,d,4,maybe-vegan,197.0,0.0,0.0,0.0,48.0,46.0,1.6,0.0
+Other Fruit,01779509,Melon & Pineapple,direct,a,1,vegan,32.0,0.5,0.5,0.1,6.5,6.5,13.0,0.04
+Other Fruit,8720600608858,Hak Rabarbercompote,direct,b,3,maybe-vegan,80.0,0.0,0.0,0.0,19.0,19.0,2.0,0.0
+Other Fruit,3663559000043,Pruneaux d’Agen mi-cuits,direct,c,1,vegan,241.0,2.0,0.5,0.1,54.0,35.0,7.0,0.01
+Other Fruit,5400101069718,Carrefour The Market Nuts & Fruits Papaye Séché & Sucré,direct,e,3,maybe-vegan,352.0,0.5,0.5,0.1,87.0,74.0,2.0,0.35
+Other Pulses,0075669101986,"Iberia, pinto beans",direct,b,3,unknown,59.0,2.94,0.37,0.0,10.29,0.0,2.9,0.24
+Other Pulses,8008705009412,Edamame naturali,direct,b,3,vegan,425.0,37.0,15.0,2.2,30.0,2.0,11.0,1.4
+Other Pulses,5011673109117,Borlotti Beans in salted water,direct,a,3,vegan,59.0,4.6,0.3,0.0,6.7,0.0,4.7,0.6
+Other Pulses,5410153215636,Haricots rouge bio,direct,a,3,vegan,108.0,8.0,0.8,0.1,14.5,0.4,5.5,0.2
+Other Pulses,3465511901753,Germes de Haricot Mungo,direct,c,3,maybe-vegan,35.0,2.7,0.1,0.1,5.0,3.2,1.6,0.48
+Other Pulses,9310082125722,Chickpeas with Zesty Vinaigrette,direct,b,3,maybe-vegan,157.40234,7.142857,5.714286,0.71428573,17.285715,2.0,4.142857,0.6785714
+Other Pulses,3222475325359,Lentilles vertes de France,direct,a,1,vegan,333.0,24.0,1.7,0.2,50.0,1.0,11.0,0.03
+Other Pulses,3559502000003,Haricots roses cuisinés 4/4,direct,b,3,unknown,121.0,5.4,3.4,0.4,18.0,0.7,4.1,0.68
+Other Pulses,0736393509133,Glory foods seasoned southern style red beans,direct,a,4,unknown,77.0,3.85,1.15,0.0,13.85,0.0,3.8,0.9425
+Other Pulses,8002785005609,Montello lentils,direct,a,3,unknown,93.0,7.0,0.2,0.0,13.5,0.8,4.6,1.25
+Other Vegetables,0852681934521,Sassy Okra,direct,d,4,unknown,53.6,3.57,0.0,0.0,10.7,7.14,0.0,2.23
+Other Vegetables,4099100132816,Long grain & wild rice mix garlic and herb,direct,d,4,unknown,411.0,8.93,8.04,0.0,75.0,0.0,1.79,2.72
+Other Vegetables,8718452340453,Groentesap avocado spinazie komkommer appel peer,direct,c,1,vegan,61.1,0.6,2.9,0.3,7.8,7.4,0.7,0.01
+Other Vegetables,0070784214870,Regular mashed potatoes,direct,a,4,unknown,363.63635,9.090909,0.0,0.0,81.818184,0.0,9.090909,0.22727273
+Other Vegetables,00004360,Paprika 2stk,direct,b,1,vegan,26.0,0.8,0.2,0.1,4.2,4.2,0.0,0.0
+Other Vegetables,5010034011526,Golden Vegetable,direct,c,4,unknown,151.0,4.1,2.2,0.1,36.0,0.9,1.2,0.55
+Other Vegetables,3254474018727,Géant vert fonds d artichauts,direct,b,3,vegan,27.0,1.3,0.1,0.0,4.1,1.0,2.3,0.85
+Other Vegetables,8720986890144,Greens,direct,c,1,unknown,228.0,9.9,2.2,0.6,46.0,25.0,40.0,0.44
+Other Vegetables,3564700179352,Salade composée,direct,a,3,vegan,19.0,1.3,0.5,0.1,1.8,1.0,2.3,0.1
+Other Vegetables,20253448,Navets,direct,a,1,vegan,28.0,0.9,0.1,0.0,6.0,3.8,0.0,0.16
+Peas,7032069718605,REMA 1000 Erter,direct,c,1,vegan,67.0,5.2,0.5,0.5,8.0,4.8,5.5,0.01
+Peas,4260718292968,Snack-Erbsen ungarische Paprika,direct,c,4,maybe-vegan,406.0,14.0,10.0,1.0,60.0,7.9,8.7,1.0
+Peas,80160328,Cirio peas,direct,a,4,vegan,72.0,4.9,0.9,0.3,7.6,3.9,6.2,0.6
+Peas,3564707086943,Petits pois très fins surgelés,direct,a,1,vegan,64.0,5.2,0.4,0.0,8.0,4.7,5.5,0.18
+Peas,3256220471930,Petits pois extra-fins - Bocal de 445g net égoutté,direct,a,3,maybe-vegan,82.0,5.1,0.8,0.2,11.0,2.6,5.8,0.45
+Peas,3256222113036,Petits pois très fins - Boîte de 280g net égoutté,direct,b,3,maybe-vegan,82.0,5.1,0.8,0.2,11.0,2.6,5.8,0.45
+Peas,3250390103356,Petits pois extra fins - 3x 1/4,direct,a,4,maybe-vegan,87.2,5.4,0.6,0.2,12.0,4.6,6.1,0.57
+Peas,3250390000808,Petits pois très fins carottes - 4/4,direct,a,4,maybe-vegan,58.2,3.3,0.4,0.2,8.0,4.1,4.7,0.59
+Peas,3256227458927,Petits pois doux Cuisson vapeur - Boîte de 530g net égoutté,direct,a,3,maybe-vegan,79.0,5.7,0.9,0.2,8.8,2.6,6.4,0.47
+Peas,3560070738366,Petits pois Moyens,direct,a,3,maybe-vegan,80.0,5.4,0.8,0.1,10.0,1.7,5.7,0.5
+Pig Meat,3537580705027,Le Pâté Hénaff,direct,d,3,non-vegan,275.0,17.0,23.0,9.0,0.5,0.2,0.0,1.475
+Pig Meat,3498940011779,Cube de bacon fumer,direct,d,4,non-vegan,121.0,22.0,3.4,1.36,0.5,0.5,0.0,3.0
+Pig Meat,2796632007378,Schweinerückensteak gewürzt mit Paprika,direct,c,4,non-vegan,133.0,21.0,5.0,1.9,0.9,0.9,0.0,1.5
+Pig Meat,7035620051845,Sticks svin med tacokrydder,direct,d,4,non-vegan,265.0,19.0,20.0,7.8,1.3,0.4,0.0,1.2
+Pig Meat,3454779121898,Confit de foie de porc aux figues,direct,e,3,non-vegan,310.0,15.0,26.0,9.3,4.1,2.0,0.62906665,1.6
+Pig Meat,5906245780330,Schab Wędzony na wiśniowo,direct,d,4,non-vegan,102.0,18.0,2.4,1.2,2.0,0.5,0.0,2.2
+Pig Meat,4056489148272,Pork shoulder steaks,direct,c,1,non-vegan,174.0,18.2,11.1,4.2,0.2,0.2,0.5,0.17
+Pig Meat,20363963,paštika z pečeným masem,direct,e,4,non-vegan,269.0,10.4,24.0,9.0,2.8,0.9,0.3,1.9
+Pig Meat,8431876268775,Paté oporto,direct,e,4,non-vegan,289.0,11.0,27.0,10.0,0.0,0.0,0.0,1.6
+Pig Meat,4063367226274,Salami ummantelt,direct,e,4,non-vegan,304.0,23.2,23.0,9.7,1.0,1.0,0.0,4.0
+Potatoes,0060383054915,Whole white potatoes,direct,a,3,vegan,59.88024,1.7964072,0.0,0.0,13.772455,0.0,1.7964072,0.0
+Potatoes,4088600070254,Baby jacket potatoes in herb marinade,direct,b,4,unknown,107.0,2.0,3.3,0.6,16.0,2.2,3.1,0.33
+Potatoes,20439354,Pomme de terre,direct,b,1,vegan,80.5,1.8,0.34,0.094,16.7,0.86,1.8,0.052
+Potatoes,8718907418553,Verse Vlaams Friet,direct,a,3,vegan,122.0,2.6,4.0,0.4,18.0,0.2,1.9,0.03
+Potatoes,13251212512000081841,"PDT Grenaille Variétés Tournante Lavée (Charlotte - Gourmandine) ~12,5kg",direct,b,1,vegan,80.5,1.8,0.34,0.094,16.7,0.86,1.8,0.052
+Potatoes,3560070374335,Pommes de terre nouvelles,direct,b,3,vegan,82.0,1.9,1.5,0.2,14.0,0.7,2.5,0.05
+Potatoes,4061458037655,Kloßteig halb&halb,direct,c,3,vegan,104.0,1.8,0.1,0.1,23.0,0.5,2.0,1.0
+Potatoes,3250390107262,Pomme de terre 4/4,direct,b,3,vegan,52.2,1.3,0.0,0.1,11.0,0.7,1.5,0.5
+Potatoes,11674225,British mini new potatoes by Sainsbury's,direct,a,1,vegan,66.0,1.8,0.5,0.1,13.5,1.0,1.8,0.01
+Potatoes,8710400429012,Verse Franse friet,direct,a,1,vegan,157.0,2.5,5.7,0.6,23.0,0.6,2.0,1e-04
+Poultry Meat,3661112079086,Filet de poulet braisé x 4 tranches,direct,c,4,unknown,98.3,20.3,1.5,0.3,0.9,0.5,0.0,1.9
+Poultry Meat,4056489822042,Medaillons de poulet,direct,a,1,non-vegan,107.0,23.0,1.7,0.7,0.0,0.0,0.0,0.1
+Poultry Meat,0043000285558,Stuffing Mix,direct,e,4,non-vegan,392.85715,10.714286,21.428572,5.357143,75.0,7.142857,3.5714285,3.6607144
+Poultry Meat,0896775000846,Chicken mid joint wing,direct,c,4,non-vegan,167.0,17.71,10.42,5.21,0.0,0.0,0.0,0.78
+Poultry Meat,0253095008790,Foies de poulet,direct,a,1,non-vegan,114.0,19.0,3.9,1.4,0.8,0.8,0.0,0.19
+Poultry Meat,2152461007307,"filets de poitrine de poulet au paprika, coupé",direct,b,4,non-vegan,147.1,28.0,3.5,1.0,0.9,0.9,0.0,1.6
+Poultry Meat,20144371,Hähnchengeschnetzeltes,direct,c,4,non-vegan,111.0,7.5,3.6,1.8,11.6,0.7,1.2,1.32
+Poultry Meat,3266980238773,brochettes de dinde au paprika,direct,b,4,non-vegan,113.0,17.0,4.2,1.3,1.8,0.0,0.0,1.4
+Poultry Meat,0810264024052,THAI-STYLE COCONUT CHICKEN,direct,d,4,unknown,180.0,20.0,8.0,5.0,6.0,4.0,0.0,1.05
+Poultry Meat,3308456380514,Fritons de canard,direct,e,3,non-vegan,758.0,21.8,74.0,24.9,0.9,0.7,0.0,5.0
+Prawns (farmed),4099100204766,Cooked in Shell Shrimp,approximate,a,3,non-vegan,94.117645,29.310345,1.7241379,0.0,0.0,0.0,0.0,0.8189655
+Prawns (farmed),3175681278295,Mini nems au crevettes,approximate,c,3,non-vegan,227.0,6.3,9.7,1.0,27.0,2.2,3.1,1.4
+Prawns (farmed),42394501,Marinierte Garnelen - Tomate & Chili,approximate,d,4,non-vegan,257.0,13.3,22.1,1.9,1.1,0.6,0.072,1.8
+Prawns (farmed),3222475957994,Crevettes décortiquées cuites BIO,approximate,a,3,non-vegan,83.2,19.0,0.8,0.3,0.0,0.0,0.0,0.61
+Prawns (farmed),0027241720207,"Galveston Shrimp Co, Texas Wild Caught Shrimp",approximate,a,1,non-vegan,107.0,20.54,1.79,0.0,0.89,0.0,0.0,0.38608
+Prawns (farmed),3336374403077,Queues de Crevettes Marinées Citron Basilic,approximate,b,4,non-vegan,107.0,20.0,2.3,0.3,1.9,1.9,0.0240425,1.7
+Prawns (farmed),3250390136859,CREVETTES NORDIQUES ENTIERES CUITES -Pandalus borealis - calibre 130-180 MSC,approximate,a,1,non-vegan,94.8,21.0,1.2,0.3,0.0,0.0,0.0,1.3
+Prawns (farmed),5010525173306,Cooked Jumbo King Prawns,approximate,b,3,non-vegan,68.0,16.2,0.4,0.1,3.18432,0.0,0.0,1.6
+Prawns (farmed),3336374403121,Queues de Gambas Sauvages,approximate,a,3,non-vegan,87.0,20.0,0.8,0.3,0.0,0.0,0.0,0.975
+Prawns (farmed),3364699127163,Queue de crevettes congelees,approximate,a,4,non-vegan,83.0,17.79,0.87,0.3,0.93,0.58,0.0,0.5
+Rice,4099100289596,Instant Fragrant Jasmine Rice,direct,b,3,vegan,184.0,3.2,1.2,0.0,39.2,0.0,0.8,0.0
+Rice,4316268368841,Basmati Reis SATORI,direct,c,1,vegan,354.0,9.0,1.0,0.4,76.9,0.5,0.92,0.01
+Rice,3760248222905,IGP Riz de Camargue Rond Blanc,direct,b,1,vegan,348.0,6.7,1.2,0.4,77.0,0.2,1.0,0.0
+Rice,4104420218574,Naturreis Langkorn,direct,b,1,vegan,351.0,7.8,2.2,0.6,74.0,0.7,2.2,0.0
+Rice,0078742347028,Jasmine Rice 90 Second Rice,direct,b,4,unknown,184.0,2.8,3.2,0.4,35.2,0.0,0.0,0.0
+Rice,3380390001304,Riz Rond Demi Complet Italie,direct,b,1,vegan,354.0,7.0,1.8,0.3,76.5,1.0,1.9,0.01
+Rice,3222477013438,Capellini,direct,b,1,unknown,361.0,12.0,2.0,0.4,72.0,3.7,3.6,0.0
+Rice,0021130502134,Long whole grain brown rice,direct,b,1,vegan,378.0,6.67,3.33,0.0,75.56,0.0,4.4,0.0
+Rice,3273120017082,Riz Thaï Complet Variété Hom Mali,direct,b,1,vegan,347.0,10.4,2.8,0.9,67.9,0.7,4.5,0.0
+Rice,29075027,Basmati wholegrain rice,direct,b,1,vegan,366.0,9.3,2.4,0.5,74.6,0.7,4.5,0.03
+Soy milk,4891028707585,Soy Drink,direct,b,3,vegan,55.0,2.9,1.7,0.4,6.9,6.4,0.0,0.06
+Soy milk,9556007000556,Non-Dairy Soya With Calcium,direct,b,4,unknown,48.0,2.5,1.6,0.3,6.0,4.9,0.0,0.0
+Soy milk,8410128785321,Vivesoy Soja Chocolate,direct,c,4,maybe-vegan,53.0,3.2,1.8,0.3,5.3,5.2,1.2,0.13
+Soy milk,0025293005549,Protein Soy,direct,b,4,vegan,36.0,3.2,1.8,0.2,1.6,0.4,0.8,0.09
+Soy milk,4088600574530,Everyday Essentials Soya Unsweetened,direct,b,4,vegan,36.0,3.0,1.7,0.3,1.8,0.7,0.5,0.09
+Soy milk,8009310004601,Bevanda alla soia,direct,b,4,unknown,42.0,3.3,1.8,0.2,3.1,2.6,0.2,0.3
+Soy milk,8480012047736,Lait de soja,direct,b,1,vegan,33.0,3.2,1.7,0.3,1.1,0.5,0.49,0.0975
+Soy milk,3229820019611,Soja Douceur,direct,b,4,maybe-vegan,49.0,3.9,2.2,0.3,3.0,2.9,0.8,0.08
+Soy milk,5057172223411,Soya Unsweetened Drink,direct,b,4,vegan,19.0,2.0,1.1,0.2,0.5,0.5,0.5,0.13
+Soy milk,5099874304807,Unsweetened soya milk alternative,direct,b,4,maybe-vegan,37.0,3.9,1.8,0.3,1.1,0.5,0.5,0.06
+Tofu,8586017258679,Tofu Marynowane o Smaku Wędzonej Papryki,direct,c,4,vegan,128.0,12.0,7.5,1.0,2.5,0.5,1.0,1.5
+Tofu,8586001010696,Tofu pomazánka mexická,direct,c,4,vegan,156.0,5.0,12.0,0.9,5.9,0.5,2.1,1.2
+Tofu,4012359010278,Japanese Tofu,direct,b,3,vegan,205.0,19.0,13.0,2.0,2.4,0.5,0.239,1.4
+Tofu,3483460180203,Tofu Ail & Ciboulette,direct,a,3,vegan,125.0,13.0,7.9,0.8,1.0,0.4,0.8,1.0
+Tofu,4104420077621,Almond and hazelnut tofu,direct,a,3,vegan,177.0,17.0,11.0,1.6,0.6,0.6,3.8,0.7975
+Tofu,5034467002319,Sweet Chilli Cubes,direct,a,3,maybe-vegan,230.0,20.2,13.1,1.2,6.6,6.6,2.6,0.26
+Tofu,4260316130112,Frittiert Tofu,direct,a,3,vegan,175.0,16.7,11.8,0.9,2.0,0.6,0.1875,0.4
+Tofu,0111121111121,tofou fumé,direct,a,3,vegan,164.0,16.0,10.0,1.7,1.0,0.8,3.2,0.52
+Tofu,9313727002013,Tofu spicy,direct,a,4,unknown,133.1,16.3,5.2,0.7,2.2,0.8,0.3,0.825
+Tofu,0076371022057,Bulk Organic TOFU Cutlet,direct,a,3,vegan,153.0,14.1,9.41,1.18,3.53,1.18,2.35,0.0441
+Tomatoes,0024000155430,Tomates Datterini au jus de tomates,approximate,a,1,unknown,27.2,1.2,0.0,0.0,4.7,3.0,1.8,0.02
+Tomatoes,0070900603229,"Finely chopped tomatoes in a light puree with onion, carrot & celery",approximate,a,3,vegan,49.0,1.63,1.63,0.0,8.94,4.88,1.6,0.69
+Tomatoes,7501079702855,Tomates molidos,approximate,a,4,unknown,26.9,1.1,0.1,0.1,5.4,3.4,1.2,0.0
+Tomatoes,9100000767499,Blumauer Cherry-Tomaten,approximate,a,1,vegan,19.3,0.86,0.26,0.056,2.49,2.48,1.2,0.0081
+Tomatoes,8001300223207,Passata di pomodoro Despar,approximate,a,3,vegan,21.0,1.1,0.0,0.0,3.5,3.0,0.7,0.47
+Tomatoes,8001120821584,pomodori secchi con pecorino sardo DOP,approximate,d,3,unknown,201.0,5.5,15.0,2.8,9.2,7.0,3.4,2.0
+Tomatoes,4337256165525,Cherry Romatomaten,approximate,a,1,vegan,19.3,0.86,0.26,0.056,2.49,2.48,1.2,0.0081
+Tomatoes,3038359004186,Panzani sce brique tomate cuisinee ail & oignons 500g,approximate,c,4,maybe-vegan,61.0,1.3,2.1,0.2,8.6,6.5,1.2,1.4
+Tomatoes,8005110518003,Pasta Sauce Arrabiata,approximate,a,4,unknown,52.0,1.5,2.7,0.4,4.6,4.2,0.0,0.93
+Tomatoes,0060788003933,Diced tomatoes with roasted garlic and onion,approximate,a,4,maybe-vegan,25.0,0.83,0.0,0.0,5.79,4.13,0.8,0.805
+Wheat & Rye,3487400004390,Blé Cuisiné à la tomate et au basilic,direct,b,4,unknown,173.63637,6.1,2.3,0.3,27.0,0.5,5.6,0.0
+Wheat & Rye,3111950269502,Petit épeautre du Velay,direct,a,1,vegan,344.0,15.6,2.4,0.4,59.0,6.7,10.7,0.0
+Wheat & Rye,0073472001202,EZEKIEL 4:9 FLOURLESS SPROUTED GRAIN BREAD,direct,b,4,vegan,235.29411,4.0,0.5,0.0,15.0,0.0,3.0,0.1875
+Wheat & Rye,0011110135520,organic 100% whole wheat bread,direct,c,4,unknown,255.81395,11.627907,3.488372,1.1627907,48.837208,6.976744,4.6511626,1.1046512
+Wheat & Rye,0791660408244,Shredded Wheat Cereal,direct,a,1,vegan,340.0,9.61,1.5,0.27,68.6,1.6,6.8,0.063
+Wheat & Rye,3596710411702,"Mélange de blé, lentilles et quinoa rouge",direct,a,3,vegan,351.0,16.0,2.4,0.6,62.0,2.1,8.3,0.01
+Wheat & Rye,8022424005678,Gia’ pronti per te,direct,b,3,vegan,195.0,6.5,4.3,0.7,29.7,0.6,5.5,0.75
+Wheat & Rye,3329482611205,Ble Tendre Complet,direct,b,1,vegan,328.0,1.0,2.2,0.4,61.5,1.0,11.0,0.01
+Wheat & Rye,9010437005265,Bio Pasta & Pizza Mehl,direct,b,1,vegan,343.0,12.0,0.9,0.2,70.0,0.6,3.4,0.0
+Wheat & Rye,4033122000739,Dinkelgries,direct,a,1,vegan,343.0,17.0,1.7,0.2,60.0,0.7,10.7,0.01
+Wine,3245371832059,Vin rouge bourgueil,direct,,3,maybe-vegan,82.1,0.07,0.0,0.0,2.63,0.62,0.0,0.0025
+Wine,14886946,vin,direct,,3,maybe-vegan,54.9,0.54,0.12,0.0405,11.775,11.625,0.675,0.00375
+Wine,4260033743756,Kessello 2014,direct,,3,maybe-vegan,82.1,0.07,0.0,0.0,2.63,0.62,0.0,0.0025
+Wine,3770028387182,Gamay au naturel,direct,,3,vegan,79.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Wine,3378012605009,Sancerre,direct,,3,maybe-vegan,82.1,0.07,0.0,0.0,2.63,0.62,0.0,0.0025
+Wine,3250392335076,savoie blanc,direct,,4,unknown,63.0,0.71712,0.15936,0.053784,0.9,0.2,0.8964,0.0049854
+Wine,5603706013883,Alma da Vinha,direct,,3,vegan,73.2,0.72,0.16,0.054,15.7,15.5,0.9,0.005
+Wine,3523680096899,Crémant de Bourgogne,direct,,3,vegan,73.2,0.72,0.16,0.054,15.7,15.5,0.9,0.005
+Wine,3211203433220,Bordeaux 2013,direct,,3,maybe-vegan,82.1,0.07,0.0,0.0,2.63,0.62,0.0,0.0025
+Wine,3513030001291,Normandie limonade,direct,,3,vegan,46.0,0.1,0.0,0.0,12.0,12.0,0.0,0.0
