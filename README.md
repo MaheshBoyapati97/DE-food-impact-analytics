@@ -5,7 +5,7 @@ A data engineering project comparing the environmental footprint and health prof
 
 I wanted a project that used real public data instead of generated/mock data, and that forced me to deal with actually messy source data instead of something pre-cleaned. Food turned out to be a good fit for that — there's a well-known environmental impact study (Poore & Nemecek) and a huge, genuinely messy open product database (Open Food Facts), and combining the two lets you compare plant-based vs. conventional foods on both environmental and health grounds at once.
 
-The goal is a working pipeline end to end — raw ingestion, cleaning, transformation, reporting — on Microsoft Fabric, built the way a real team would build it rather than a tutorial version.
+The goal is a working pipeline end to end — raw ingestion, cleaning, transformation, reporting — on Microsoft Fabric, using real data and writing down the decisions I made along the way.
 
 ## Architecture
 
@@ -45,7 +45,7 @@ Two containers, named for what's actually in them rather than where they came fr
 
 ![Containers List](screenshots/Containers_List.png)
 
-Grabbed the three Poore & Nemecek CSVs straight from Our World in Data's grapher URLs. Open Food Facts was the bigger job — pulled the Parquet export (~7.2GB) from Hugging Face through Azure Cloud Shell instead of downloading to my laptop first, so the transfer happened inside Azure's network rather than over my home connection twice. Before uploading it anywhere, read it back with pandas to make sure it wasn't truncated — came back with 4,655,195 rows, so the file was intact.
+Grabbed the Poore & Nemecek CSVs straight from Our World in Data's grapher URLs: the three per-kg files first, and the three per-100g-of-protein ones later, once I knew I'd need them for fair comparisons. Open Food Facts was the bigger job — pulled the Parquet export (~7.2GB) from Hugging Face through Azure Cloud Shell instead of downloading to my laptop first, so the transfer happened inside Azure's network rather than over my home connection twice. Before uploading it anywhere, read it back with pandas to make sure it wasn't truncated — came back with 4,655,195 rows, so the file was intact.
 
 ![Food Parquet Blob Details](screenshots/Food_Parquet_Blob_Details.png)
 
@@ -271,26 +271,26 @@ It has three pages, built in the Fabric web editor.
 
 ### What it shows
 
-- Beef runs from 33.3 to 99.5 kg CO2e per kg, against 3.2 for tofu.
-- Cheese and pig meat are the worst on both counts. Cheese has about 16g of saturated fat per 100g and a Nutri-Score average of 3.84, and pig meat is at 4.08.
-- Eggs are the exception among animal foods, with a Nutri-Score average of 1.29.
+- Beef runs from 33.3 to 99.5 kg CO2e per kg, against 3.2 for tofu. Beef and lamb (about 40) are well ahead of every other food on emissions.
+- Pig meat and cheese have the worst Nutri-Score averages (4.08 and 3.84), and cheese averages about 16g of saturated fat per 100g.
+- Eggs are the exception among animal foods: 4.7 kg CO2e per kg and a Nutri-Score average of 1.29.
 - Replacing beef with tofu, peas or other pulses cuts emissions by 94 to 99% per 100g of protein. Not every swap wins, though: cheese to nuts saves no water, and eggs to other pulses uses 29% more land.
 
 ### Things that didn't go smoothly
 
-- The web editor has fewer settings than Power BI Desktop. There's no Column tools tab, so I set percentage formats on the model, and the display units setting wasn't where the docs said, so I used text measures instead.
-- Direct Lake models don't support calculated columns, and I didn't want to rebuild the Gold table at the end. So the legend on the comparison chart reads True and False for "animal-based food?", and the title and subtitle explain what that means.
+- The web editor has fewer settings than Power BI Desktop. There's no Column tools tab, so I set percentage formats on the model, and the display units setting wasn't where I expected, so I used text measures instead.
+- Direct Lake tables don't let me add calculated columns, and I didn't want to rebuild the Gold table at the end. So the legend on the comparison chart reads True and False for "animal-based food?", and the title and subtitle explain what that means.
 - The environmental figure is per category, so every product in a category shows the same footprint.
 - The live report runs on a Fabric trial capacity that ends at the start of November 2026, and the report goes with it. That's why this repo has the PDF, screenshots and CSV exports.
 
 ### Rebuilding it
 
-The notebooks in `notebooks/` rebuild every table from the raw Open Food Facts file (about 7GB, [downloaded from Hugging Face](https://huggingface.co/datasets/openfoodfacts/product-database)) and the six Our World in Data CSVs. The product-level Silver tables are too big to commit. To rebuild just the report, load the three Gold CSVs from `data/` into Power BI Desktop (free), recreate the two relationships and add the measures above.
+The notebooks in `notebooks/` rebuild every table, starting from the raw Open Food Facts file (about 7GB, [downloaded from Hugging Face](https://huggingface.co/datasets/openfoodfacts/product-database)) and the six Our World in Data CSVs, as long as the Lakehouse and the two shortcuts exist. I didn't commit the product-level Silver tables, but running the notebooks recreates them. To rebuild just the report, load the three Gold CSVs from `data/` into Power BI Desktop (free), recreate the two relationships and add the measures above.
 
 ### What's in the repo
 
 ```
-notebooks/     the exploration, Silver and Gold notebooks
+notebooks/     nb_01_bronze_exploration, nb_02_silver_category_mapping, nb_03_gold_category_profile
 data/          CSV exports of the reference tables and the Gold tables
 report/        the report as a PDF
 screenshots/   the images used in this README
@@ -300,8 +300,17 @@ screenshots/   the images used in this README
 
 ---
 
+## What I'd add next
+
+- A Fabric pipeline to run the notebooks in order on a schedule, with an alert when one fails. Right now I run them by hand, in order.
+- Automated data quality tests. The checks so far are cells I run and read, not tests that stop a bad load.
+- A fallback for the 60% of products with no usable category, such as matching on the product name or ingredients. That would also fill the six empty categories.
+- Git integration and a deployment step, so the notebooks and the model aren't only in a workspace that expires.
+
+---
+
 ## Stack
-Microsoft Fabric (Lakehouse, OneLake, Data Pipelines), PySpark, Delta Lake, Power BI (Direct Lake semantic model and report), Azure Data Lake Storage Gen2, Azure Cloud Shell / AzCopy.
+Microsoft Fabric (Lakehouse, OneLake shortcuts, notebooks), PySpark, Delta Lake, Power BI (Direct Lake semantic model and report), Azure Data Lake Storage Gen2, Azure Cloud Shell / AzCopy.
 
 ## Status
 - [x] Phase 1: Fabric Environment Setup
