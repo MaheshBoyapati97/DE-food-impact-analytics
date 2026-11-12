@@ -37,7 +37,7 @@ Nothing to report on the challenges front for this one — it was just clicking 
 
 This phase ended up being most of the actual work early on, and most of the real problems.
 
-Set up an Azure Data Lake Storage Gen2 (ADLS Gen2) storage account (`stfoodimpactdev`, Central US, Standard, locally redundant storage, hierarchical namespace on) to stage both datasets before bringing them into Fabric.
+Set up an Azure Data Lake Storage Gen2 (ADLS Gen2) storage account (`stfoodimpactdev`, East US, Standard, locally redundant storage, hierarchical namespace on) to stage both datasets before bringing them into Fabric.
 
 ![Storage Account Overview](screenshots/Storage_Account_Overview.png)
 
@@ -86,6 +86,8 @@ df.show(5)
 ![OWID Shortcut Verification](screenshots/OWID_Shortcut_Verification.png)
 
 The SAS token ended up expiring twice. The first one was only valid for a few hours, so the OWID shortcut threw a `403 AccessDenied` when I got around to checking it. The replacement lasted a few weeks and then lapsed too, which broke both shortcuts the next time I opened a notebook. Both times the fix was the same: generate a new token and paste it into each shortcut's connection under Manage connections and gateways. This time I set the expiry much further out.
+
+The problem showed up on the bill. I put the storage account in East US, but my Fabric capacity was in Central US, so every time a notebook read the 7GB file the data crossed regions. Between October and mid-November the total was $2.30, and $2.06 of that was bandwidth against $0.26 for the storage itself. It's small money, but it's the kind that grows quietly. I should have checked the capacity's region before creating the account. Nothing reads the file anymore, so the cost is down to a few cents a month.
 
 ---
 
